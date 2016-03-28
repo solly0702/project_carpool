@@ -14,7 +14,7 @@ var UserSchema= new mongoose.Schema({
     trim: true,
     required: true,
   },
-  carpool: {
+  _carpool: {
     type: Schema.Types.ObjectId,
     ref: "carpools"
   },

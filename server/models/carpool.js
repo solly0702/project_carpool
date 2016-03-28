@@ -37,6 +37,10 @@ var CarpoolSchema= new mongoose.Schema({
     trim: true,
     min: Date.now
 
+  },
+  meeting_loc: {
+    type: String,
+    trim: true
   }
   }, {timestamps: {
     createdAt: "created_at",
