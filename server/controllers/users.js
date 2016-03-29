@@ -29,13 +29,17 @@ module.exports=(function(app) {
     update: function(req,res){
       console.log('@@ in user_update');
       console.log(req.params);
-      console.log(req.body);
-      Users.findOne({_id:req.params}, function(err, user){
-        console.log("++++++++++" + req.body);
-        user.push(req.body);
-        user.save(function(err, result){
-          res.json(result);
-        })
+      Users.findOne({_id:req.params.id}, function(err, user){
+        console.log("++++++++++" + req.body.group_size, req.body.contact_info, req.body.time);
+        console.log(user);
+        user.group_size = req.body.group_size
+        user.contact_info = req.body.contact_info
+        user.time = req.body.time
+        user.save()
+        .then(returnData.bind(res))
+        .catch(err_catch.bind(res));
+        console.log(user)
+
       });
     }
   };

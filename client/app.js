@@ -18,6 +18,11 @@ app.config(["$routeProvider", function($routeProvider) {
     controller : 'driverCtrl',
     controllerAs: "driver"
   })
+  .when('/carpools', {
+    templateUrl: 'partials/carpools.html',
+    controller: 'carpoolCtrl',
+    controllerAs: 'carpool'
+  })
   .otherwise({
     redirectTo: "/index"
   });

@@ -11,9 +11,10 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
       callback(res.data);
     });
   };
-  rF.update = function(data, callback) {
+  rF.update = function(rider, callback) {
     console.log('start rF update');
-    $http.put('/users/'+ currentUser.id, data).then(function(res){
+    console.log(rider);
+    $http.put('/users/'+ currentUser.id, rider).then(function(res){
       console.log('made it back to rF update');
       callback(res);
     })
