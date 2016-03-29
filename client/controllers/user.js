@@ -4,19 +4,18 @@ app.controller("userCtrl", ["$scope", "userFactory", "$location", function($scop
 
   var user = this;
 
-  user.index = function() {
-    uF.index(function(res) {
-      user.users = res;
-    });
-  };
-
   user.create = function() {
       console.log(user);
     uF.create(user, function(res) {
       user.users = res;
-      $loc.url("home");
+      for (user in res) {
+        if (user.status === true) {
+          $loc.url("rider");
+        } else {
+          $loc.url("driver");
+        }
+      }
     });
   };
 
-  user.index();
 }]);

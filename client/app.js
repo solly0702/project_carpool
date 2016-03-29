@@ -8,10 +8,15 @@ app.config(["$routeProvider", function($routeProvider) {
     controller: "userCtrl",
     controllerAs: "user"
   })
-  .when('/home', {
-    templateUrl: 'partials/home.html',
-    controller: 'carpoolCtrl',
-    controllerAs: "carpool"
+  .when('/rider', {
+    templateUrl: 'partials/rider.html',
+    controller: 'riderCtrl',
+    controllerAs: "rider"
+  })
+  .when('/driver', {
+    templateUrl: 'partials/driver.html',
+    controller : 'driverCtrl',
+    controllerAs: "driver"
   })
   .otherwise({
     redirectTo: "/index"
