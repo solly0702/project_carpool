@@ -1,9 +1,12 @@
 console.log("user_CTRL");
 
-app.controller("userCtrl", ["$scope", "userFactory", "$location", function($scope, uF, $loc) {
+app.controller("userCtrl", ["$scope", "userFactory", "$location", '$cookies', function($scope, uF, $loc, $cookies) {
 
   var user = this;
-
+  var currentUser = {
+    id: $cookies.get('userid'),
+    name: $cookies.get('username')
+  };
   user.create = function() {
     uF.create(user, function(res) {
       user.users = res;

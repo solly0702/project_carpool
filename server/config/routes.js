@@ -12,6 +12,7 @@ module.exports = (function(app) {
   app.post('/login', Users.create);
   app.post("/carpool", Carpools.create);
   // app.put('/users/:id', Users.update);
+  app.put('/users/:id', Users.update);
   // app.delete('/users/:id', Users.delete);
 });
 //**********END routes for users**************
