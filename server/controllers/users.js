@@ -25,6 +25,18 @@ module.exports=(function(app) {
       .save()
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
+    },
+    update: function(req,res){
+      console.log('@@ in user_update');
+      console.log(req.params);
+      console.log(req.body);
+      Users.findOne({_id:req.params}, function(err, user){
+        console.log("++++++++++" + req.body);
+        user.push(req.body);
+        user.save(function(err, result){
+          res.json(result);
+        })
+      });
     }
   };
 })();
