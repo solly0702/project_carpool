@@ -7,7 +7,8 @@ app.factory("userFactory", ["$http", "$cookies", function($http, $cookies) {
     console.log(data);
     $http.post("/login", data)
     .then(function(res) {
-      $cookies.put("userdata", res.data);
+      $cookies.put("username", res.data.name);
+      $cookies.put("user_id", res.data._id);
       callback(res);
     }).catch(function(err) {
       console.log(err);

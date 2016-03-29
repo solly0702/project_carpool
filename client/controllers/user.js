@@ -6,9 +6,9 @@ app.controller("userCtrl", ["$scope", "userFactory", "$location", function($scop
 
   user.create = function() {
     uF.create(user, function(res) {
-      console.log(res);
       user.users = res;
-      if (res.status === false) {
+      console.log(user.users);
+      if (user.users.data.status === false) {
         $loc.url("driver");
       } else {
         $loc.url("rider");

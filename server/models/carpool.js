@@ -3,36 +3,24 @@ console.log("carpool_Model_connections");
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var CarpoolSchema= new mongoose.Schema({
-  user: [{
+  _user: {
     type: Schema.Types.ObjectId,
     ref: "uses"
-  }],
+  },
   start_loc: {
-    long: {
-      type: Number,
-      trim: true
-    },
-    lat: {
-      type: Number,
-      trim: true
-    }
+    type: String,
+    trim: true
   },
   end_loc: {
-    long: {
-      type: Number,
-      trim: true
-    },
-    lat: {
-      type: Number,
-      trim: true
-    }
+    type: String,
+    trim: true
   },
   capacity: {
     type: Number,
     trim: true,
     max: [10, "Not more then 10"]
   },
-  plan: {
+  time_plan: {
     type: Date,
     trim: true,
     min: Date.now
