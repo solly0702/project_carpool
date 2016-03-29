@@ -1,1 +1,23 @@
-Hello {{rider}}
+<head>
+<style type=text/css>
+fieldset{
+  width: 300px;
+  margin: 0px auto;
+}
+
+</style>
+</head>
+
+<body>
+  Hello {{rider.currentUser}}
+  <fieldset>
+    <legend>Enter Info!</legend>
+    All Fields required
+    <form ng-submit='rider.update()'>
+      Group Size: <input type='number' ng-model='rider.group_size'>
+      Contact Info: <input type="number" ng-model='rider.contact_info'>
+      Time you would like to leave: <input type="time" ng-model='rider.time'>
+      <input type="submit" value='Submit'>
+    </form>
+  </fieldset>
+</body>

@@ -25,6 +25,22 @@ module.exports=(function(app) {
       .save()
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
+    },
+    update: function(req,res){
+      console.log('@@ in user_update');
+      console.log(req.params);
+      Users.findOne({_id:req.params.id}, function(err, user){
+        console.log("++++++++++" + req.body.group_size, req.body.contact_info, req.body.time);
+        console.log(user);
+        user.group_size = req.body.group_size
+        user.contact_info = req.body.contact_info
+        user.time = req.body.time
+        user.save()
+        .then(returnData.bind(res))
+        .catch(err_catch.bind(res));
+        console.log(user)
+
+      });
     }
   };
 })();

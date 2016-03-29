@@ -9,7 +9,7 @@ module.exports = (function(app) {
   // app.get('/users/:id', Users.show);
   // app.get('/users/:id/edit', Users.edit);
   app.post('/login', Users.create);
-  // app.put('/users/:id', Users.update);
+  app.put('/users/:id', Users.update);
   // app.delete('/users/:id', Users.delete);
 });
 //**********END routes for users**************
