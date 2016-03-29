@@ -5,15 +5,13 @@ app.controller("userCtrl", ["$scope", "userFactory", "$location", function($scop
   var user = this;
 
   user.create = function() {
-      console.log(user);
     uF.create(user, function(res) {
+      console.log(res);
       user.users = res;
-      for (user in res) {
-        if (user.status === true) {
-          $loc.url("rider");
-        } else {
-          $loc.url("driver");
-        }
+      if (res.status === false) {
+        $loc.url("driver");
+      } else {
+        $loc.url("rider");
       }
     });
   };

@@ -1,6 +1,6 @@
 console.log("rider_FR");
 app.factory("riderFactory", ["$http", function($http) {
-  
+
   var rF = {};
 
   rF.index = function(callback) {
@@ -10,5 +10,5 @@ app.factory("riderFactory", ["$http", function($http) {
   };
 
 
-  return cF;
+  return rF;
 }]);
