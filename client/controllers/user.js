@@ -1,16 +1,22 @@
-app.controller('userController', ['$scope', 'userFactory', '$location', function($scope, uF, loc){
-  console.log('userController');
-  var _this = this;
-  this.login = function(){
-    uF.login(_this.user, function(data){
-      if(!data.data.error){
-        $loc.url('home');
-        console.log(data.data);
-      }
-      this.error = data.data.error;
-      console.log(this.error);
-    })
-  }
+console.log("user_CTRL");
 
+app.controller("userCtrl", ["$scope", "userFactory", "$location", function($scope, uF, $loc) {
 
-}])
+  var user = this;
+
+  user.index = function() {
+    uF.index(function(res) {
+      user.users = res;
+    });
+  };
+
+  user.create = function() {
+      console.log(user);
+    uF.create(user, function(res) {
+      user.users = res;
+      $loc.url("home");
+    });
+  };
+
+  user.index();
+}]);

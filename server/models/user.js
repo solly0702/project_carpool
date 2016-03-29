@@ -10,9 +10,10 @@ var UserSchema= new mongoose.Schema({
     minlength: 3
   },
   status: {
-    type: String,
+    type: Boolean,
     trim: true,
     required: true,
+    default: true
   },
   _carpool: {
     type: Schema.Types.ObjectId,

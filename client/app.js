@@ -1,16 +1,19 @@
-console.log('at app.js');
-var app = angular.module('app', ['ngRoute', 'ngCookies'])
-.config(function($routeProvider){
-  $routProvider
-    .when('/',{
-      templateUrl: 'partials/intro.html',
-      controller: 'userController'
-    })
+console.log("angular_module&routes");
+var app = angular.module("app", ["ngRoute", "ngCookies"]);
 
-    .when('/home',{
-      templateUrl: 'partials/home.html',
-      controller: 'carpoolController'
-    })
-
-
-})
+app.config(["$routeProvider", function($routeProvider) {
+  $routeProvider
+  .when("/index", {
+    templateUrl: "partials/intro.html",
+    controller: "userCtrl",
+    controllerAs: "user"
+  })
+  .when('/home', {
+    templateUrl: 'partials/home.html',
+    controller: 'carpoolCtrl',
+    controllerAs: "carpool"
+  })
+  .otherwise({
+    redirectTo: "/index"
+  });
+}]);

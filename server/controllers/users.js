@@ -20,6 +20,7 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     },
     create: function(req, res) {
+      console.log("@@ in user_creation");
       var user = new Users(req.body)
       .save()
       .then(returnData.bind(res))

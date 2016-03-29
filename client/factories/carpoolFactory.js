@@ -1,14 +1,13 @@
-app.factory('carpoolFactory', ['$http', function($http){
-  var carpoolFactory = {};
+console.log("carpool_FR");
+app.factory("carpoolFactory", ["$http", function($http) {
+  var cF = {};
 
-  carpoolFactory.index = function(callback){
-    $http.get('/carpool').then(function(data){
-      callback(data)
+  cF.index = function(callback) {
+    $http.get("/users").then(function(res) {
+      callback(res.data);
     });
-  }
-  carpoolFactory.create = function(callback){
-    $http.post('/carpool').then(function(data){
-      callback(data)
-    });
-  }
-}])
+  };
+
+  
+  return cF;
+}]);

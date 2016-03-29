@@ -1,26 +1,23 @@
-app.factory('sessionFactory', ['$http', function($http){
-  var userFactory={};
-  var logged = {};
+console.log("user_FR");
+app.factory("userFactory", ["$http", "$cookies", function($http, $cookies) {
 
-  userFactory.login = function(data, callback){
-    $http.post('/login', data).then(funtion(data){
-      logged = data.data;
-      callback(data);
-    }, function(data){
-      console.log(data);
+  var uF = {};
+
+  uF.index = function(callback) {
+    $http.get("/users").then(function(res) {
+      callback(res.data);
     });
-  }
-  userFactory.logout = function(){
-    logged = {};
-  }
+  };
 
-
-
-  return userFactory;
-
-
-
-
-
-
+  uF.create = function(data, callback) {
+    console.log(data);
+    $http.post("/login", data)
+    .then(function(res) {
+      $cookies.put("userdata", res.data);
+      callback(res);
+    }).catch(function(err) {
+      console.log(err);
+    });
+  };
+  return uF;
 }]);
