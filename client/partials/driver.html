@@ -9,7 +9,7 @@
   <label for="capacity">Capacity</label>
   <select id="capacity" ng-model="driver.capacity" ng-options="idx for idx in driver.range(1,6);"></select>
   <label for="time_plan">Planing Time</label>
-  <input type="time" id="time_plan" placeholer="time" ng-model="driver.time_plan">
+  <input type="datetime" id="time_plan" placeholer="time" ng-model="driver.time_plan">
   <label for="meeting_loc">Meeting Location</label>
   <input type="text" id="metting_loc" placeholer="Enter the location you would like to meet others" ng-model="driver.metting_loc">
   <input type="submit" value="Submit">
