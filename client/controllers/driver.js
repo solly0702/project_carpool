@@ -1,7 +1,15 @@
 console.log("driver_CTRL");
-app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies" ,function($scope, dF, $loc, $cookies) {
-
+app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "uiGmapGoogleMapApi",function($scope, dF, $loc, $cookies, uiGmapGoogleMapApi) {
+  console.log("@@@ here?");
   var driver = this;
+
+  driver.map = {
+    center: {
+    latitude: 45,
+    longitude: -73
+    },
+    zoom:8
+  };
 
   driver.currentUser = {
     id: $cookies.get("user_id"),
@@ -24,4 +32,7 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     });
   };
 
+  uiGmapGoogleMapApi.then(function(map) {
+    console.log(driver.map);
+  });
 }]);

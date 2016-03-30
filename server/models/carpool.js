@@ -24,15 +24,6 @@ var CarpoolSchema= new mongoose.Schema({
   time_plan: {
     type: Date,
     trim: true,
-    validate: {
-      validator: function(time_plan) {
-        if (time_plan > Date.now()) {
-          return time_plan.test(time_plan);
-        }
-      },
-      message: "{time_plan} is not available time"
-    }
-
   },
   meeting_loc: {
     type: String,

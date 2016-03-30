@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" ng-app = "app">
 <head>
-  <meta charset="UTF-8">
-  <script src='jquery/dist/jquery.js'></script>
-  <script src='bootstrap/dist/js/bootstrap.js'></script>
+
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4"
+  async defer></script>
   <script src='angular/angular.js'></script>
   <script src='angular-route/angular-route.js'></script>
   <script src="angular-cookies/angular-cookies.js"></script>
-  <script src ='app.js'></script>
+  <script src='/lodash/dist/lodash.js'></script>
+  <script src='/angular-simple-logger/dist/angular-simple-logger.min.js'></script>
+  <script src='/angular-google-maps/dist/angular-google-maps.min.js'></script>
+
   <!-- //factories-->
+  <script src ='app.js'></script>
   <script src='/factories/userFactory.js'></script>
   <script src='/factories/riderFactory.js'></script>
   <script src='/factories/driverFactory.js'></script>
@@ -18,11 +25,22 @@
   <script src='/controllers/rider.js'></script>
   <script src='/controllers/driver.js'></script>
   <script src='/controllers/carpool.js'></script>
+  <!-- //bootstrap-->
+  <script src="/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.min.css">
   <title>Carpool App</title>
-
 
 </head>
 <body>
-<div ng-view></div>
+  fjwkdlfjaew
+  <ng-view></ng-view>
+</body>
+</html>
+
+
+
+  </div>
 </body>
 </html>
