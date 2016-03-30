@@ -15,10 +15,11 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
   };
   rider.update = function(){
     rF.update(rider, function(res){
-      console.log(res);
+      // console.log(res);
       rider.users = res;
       $loc.url('carpool');
     });
   };
+
   rider.index();
 }]);

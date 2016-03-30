@@ -13,10 +13,10 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
     });
   };
   rF.update = function(rider, callback) {
-    console.log('start rF update');
+    // console.log('start rF update');
     console.log(rider);
     $http.put('/users/'+ currentUser.id, rider).then(function(res){
-      console.log('made it back to rF update');
+      // console.log('made it back to rF update');
       callback(res);
     });
   };

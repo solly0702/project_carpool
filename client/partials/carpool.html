@@ -1,3 +1,23 @@
 {{}}
 
 WE MADE IT!
+{{carpool.users[45]}}
+
+<table class='table table-striped'>
+  <tr>
+    <th>Driver Name</th>
+    <th>Driver Location</th>
+    <th>Driver Destination</th>
+    <th>Est. Departure Time</th>
+    <th>Capacity</th>
+    <th>Request To Join</th>
+  </tr>
+  <tr ng-repeat='user in carpool.users'>
+    <td>{{user.name}}</td>
+    <td>{{user._carpool.start_loc}}</td>
+    <td>{{user._carpool.end_loc}}</td>
+    <td>{{user._carpool.time_plan}}</td>
+    <td>{{user._carpool.capacity}}</td>
+    <td><button ng-click='carpool.join()'>Join Carpool</button></td>
+  </tr>
+</table>

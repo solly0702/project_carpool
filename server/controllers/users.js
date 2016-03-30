@@ -15,7 +15,7 @@ module.exports=(function(app) {
   return {
     index: function(req, res) {
       Users.find({})
-      .populate({path:"users", populate: {path:"_carpool"}})
+      .populate("_carpool")
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
     },
