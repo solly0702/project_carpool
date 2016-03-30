@@ -1,5 +1,5 @@
 WE MADE IT!
-
+{{carpool.users[45]}}
 
 <table class='table table-striped'>
   <tr>
@@ -10,12 +10,12 @@ WE MADE IT!
     <th>Capacity</th>
     <th>Request To Join</th>
   </tr>
-  <tr>
-    <td>{{driver.name}}</td>
-    <td>{{driver.location}}</td>
-    <td>{{driver.destination}}</td>
-    <td>{{driver.time}}</td>
-    <td>{{driver.capacity}}</td>
+  <tr ng-repeat='user in carpool.users'>
+    <td>{{user.name}}</td>
+    <td>{{user._carpool.start_loc}}</td>
+    <td>{{user._carpool.end_loc}}</td>
+    <td>{{user._carpool.time_plan}}</td>
+    <td>{{user._carpool.capacity}}</td>
     <td><button ng-click='carpool.join()'>Join Carpool</button></td>
   </tr>
 </table>

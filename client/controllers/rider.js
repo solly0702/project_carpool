@@ -17,7 +17,7 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
     rF.update(rider, function(res){
       // console.log(res);
       rider.users = res;
-      $loc.url('carpools')
+      $loc.url('carpool')
     })
   }
   rider.index();
