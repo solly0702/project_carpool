@@ -10,7 +10,7 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
       start_loc: data.start_loc,
       end_loc: data.end_loc,
       capacity: data.capacity,
-      time_plna: data.time_plan,
+      time_plan: data.time_plan,
       meeting_loc: data.meeting_loc
     };
     $http.post("/carpool", carpool)
