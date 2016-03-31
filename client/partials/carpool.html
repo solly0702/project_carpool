@@ -13,10 +13,10 @@
     <th>Meeting Location</th>
     <th>Est. Departure Time</th>
     <th>Capacity</th>
-    <th ng-if='carpool.currentUser.status'>Request To Join</th>
+    <th ng-repeat='user in carpool.users' ng-if='user.status === true'>{{user.status}}Request To Join</th>
   </tr>
-  <tr ng-repeat='user in carpool.users' ng-show='carpool.currentUser.status'>
-    <td><a href='#/driver/{{user._id}}'>{{user.name}}</a></td>
+  <tr ng-repeat='user in carpool.users' ng-if='user.status === false'>
+    <td><a href='#/driver/{{user._id}}'>{{user.status}}</a></td>
     <td>{{user._carpool.start_loc}}</td>
     <td>{{user._carpool.end_loc}}</td>
     <td>{{user._carpool.meeting_loc}}</td>
