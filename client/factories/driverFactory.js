@@ -3,10 +3,8 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
 
   var dF = {};
   dF.get = function(data, callback){
-    console.log('start driver.get factory', data);
     $http.get('/driver/' + data)
     .then(function(res){
-      console.log('&&&&&&&&&&&&&&&&&&&', res);
       callback(res);
     }).catch(function(err){
       console.log(err);
@@ -14,7 +12,6 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
   };
 
   dF.create = function(data, callback) {
-    console.log("@@driver factory");
     var carpool = {
       _user: data.currentUser.id,
       start_loc: data.start_loc,

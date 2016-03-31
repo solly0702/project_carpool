@@ -13,43 +13,11 @@ fieldset{
 <h2>Welcome~!! {{driver.currentUser.name}}</h2>
 <fieldset>
 
-<<<<<<< HEAD
+
 <h3>Driver Infomation</h3>
-<form ng-submit="driver.create(); driver.geocoder();">
-  <label for="start_loc">Start Location</label>
-  <input type="text" id="start_loc" placeholder="Start Location" ng-model="driver.start_loc">
-  <label for="end_loc">Destination</label>
-  <input type="text" id="end_loc" placeholder="Destination" ng-model="driver.end_loc">
-  <label for="capacity">Capacity</label>
-  <select id="capacity" ng-model="driver.capacity" ng-options="idx for idx in driver.range(1,6);"></select>
-  <label for="time_plan">Planing Time</label>
-  <input type="time" id="time_plan" placeholder="time" ng-model="driver.time_plan">
-  <label for="meeting_loc">Meeting Location</label>
-  <input type="text" id="metting_loc" placeholder="Enter the location you would like to meet others" ng-model="driver.metting_loc">
-  <input type="submit" value="Submit">
-</form>
 
-<h2>Google Map</h2>
-{{driver.map.center}} {{driver.map.zoom}}
-{{driver.marker.coords}}
-
-<div map-lazy-load="https://maps.googleapis.com/maps/api/js?v=3.23key=AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4">
-
-<ui-gmap-google-map id="map" center="driver.map.center" zoom="driver.map.zoom" draggable="true" options="options">
-
-  <!-- <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()">
-    <div>Hello</div>
-  </ui-gmap-window> -->
-  {{driver.marker.coords}}
-  <ui-gmap-marker coords="driver.map.center" options="" events="" control="" idkey="driver.marker.id">
-  </ui-gmap-marker>
-
-</ui-gmap-google-map>
-
-</div>
-=======
 <legend>Driver Infomation</legend>
-<form ng-submit="driver.create();">
+<form ng-submit="driver.create(); driver.geocoder();">
   <label for="start_loc">Start Location</label>
   <input type="text" id="start_loc" placeholder="Start Location" ng-model="driver.start_loc"> <br>
   <label for="end_loc">Destination</label>
@@ -63,4 +31,3 @@ fieldset{
   <input type="submit" value="Submit">
 </form>
 </fieldset>
->>>>>>> 221bc7353394d6b85987013cd2d7d916ca304872

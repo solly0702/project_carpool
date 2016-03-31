@@ -22,3 +22,20 @@ Check Out Your Current Carpool Info
     <td>{{driver.banana._carpool.capacity}}</td>
   </tr>
 </table>
+
+<h2>Map</h2>
+
+
+<div map-lazy-load="https://maps.googleapis.com/maps/api/js?v=3.23key=AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4">
+
+<ui-gmap-google-map id="map" center="driver.map.center" zoom="driver.map.zoom" draggable="true" options="options" bounds="">
+
+  <ui-gmap-marker ng-repeat="marker in driver.markerList" idKey='marker.id' coords='marker.coords' anchorPoint="marker.coords.city">
+    <ui-gmap-window isIconVisibleOnClick='true'>
+      <p>{{marker.coords.city}}</p> 
+    </ui-gmap-window>
+  </ui-gmap-marker>
+
+</ui-gmap-google-map>
+
+</div>
