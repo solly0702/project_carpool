@@ -30,6 +30,15 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
       console.log(err);
     });
   };
+  dF.edit = function(id, data, callback){
+    console.log("@@ driver factory edit");
+    $http.put('/editdriver/'+ id, data)
+    .then(function(res){
+      callback(res);
+    }).catch(function(err){
+      console.log(err);
+    })
+  }
 
   return dF;
 }]);

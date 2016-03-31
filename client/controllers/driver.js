@@ -1,9 +1,6 @@
 console.log("driver_CTRL");
-<<<<<<< HEAD
-app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "uiGmapGoogleMapApi",function($scope, dF, $loc, $cookies, uiGmapGoogleMapApi) {
-=======
-app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "$routeParams" ,function($scope, dF, $loc, $cookies, $routeParams) {
->>>>>>> 221bc7353394d6b85987013cd2d7d916ca304872
+app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "$routeParams", "uiGmapGoogleMapApi", function($scope, dF, $loc, $cookies, $routeParams, uiGmapGoogleMapApi) {
+
 
   var driver = this;
   var id = $routeParams.id
@@ -24,10 +21,25 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
   driver.create = function() {
     dF.create(driver, function(res) {
       driver.drivers = res;
+      $loc.url('carpool')
+    });
+  };
+  driver.get = function(){
+    // console.log("start driver.get ctlr", id);
+    dF.get(id, function(res){
+      driver.banana = res.data;
+      // console.log(res.data);
     });
   };
 
-
+  driver.edit = function(driver){
+    console.log('start driver.edit ctlr', id);
+    dF.edit(id, driver, function(res){
+      console.log(res);
+      $loc.url('carpool')
+    })
+  };
+  console.log('banana');
   driver.map = function() {
     uiGmapGoogleMapApi.then(function(map) {
       console.log(map);
@@ -48,7 +60,7 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     });
   };
   driver.map();
-
+  console.log('donut');
   driver.geocoder = function() {
     uiGmapGoogleMapApi.then(function(map) {
       geocoder = new map.Geocoder();
@@ -66,16 +78,6 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
       });
     });
   };
-
-
-
-  driver.get = function(){
-    console.log("start driver.get ctlr", id);
-    dF.get(id, function(res){
-      driver.banana = res.data;
-      console.log(res.data);
-    });
-  };
+  console.log('asshole');
   driver.get();
-
 }]);

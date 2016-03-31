@@ -12,7 +12,9 @@ module.exports = (function(app) {
   app.post('/login', Users.create);
   app.post("/carpool", Carpools.create);
   app.get('/driver/:id', Users.getDriver);
+  app.put('/editdriver/:id', Users.editDriver);
   app.get('/rider/:id', Users.getRider);
+
   // app.put('/users/:id', Users.update);
   app.put('/users/:id', Users.update);
   // app.delete('/users/:id', Users.delete);

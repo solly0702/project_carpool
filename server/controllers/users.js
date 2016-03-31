@@ -57,6 +57,20 @@ module.exports=(function(app) {
       .exec()
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
-    }
+    },
+    editDriver: function(req, res){
+      console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id);
+      Users.findById(req.params.id).populate('_carpool'). exec(function(err, user){
+        console.log(user);
+        console.log(req.body);
+        req.body.banana.name = req.body.name;
+        req.body.banana._carpool.meeting_loc = req.body.meeting_loc;
+        req.body.banana._carpool.end_loc = req.body.end_loc;
+        req.body.banana._carpool.start_loc = req.body.start_loc;
+        req.body.banana._carpool.capacity = req.body.capacity;
+        req.body.banana._carpool.time_plan = req.body.time_plan;
+      }).then(returnData.bind(res))
+      .catch(err_catch.bind(res));
+    },
   };
 })();

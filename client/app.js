@@ -39,6 +39,11 @@ app.config(["$routeProvider", function($routeProvider) {
     controller: 'driverCtrl',
     controllerAs: 'driver'
   })
+  .when('/editdriver/:id', {
+    templateUrl: "partials/editdriver.html",
+    controller: 'driverCtrl',
+    controllerAs: 'driver'
+  })
   .when('/rider/:id', {
     templateUrl: "partials/riderinfo.html",
     controller: 'riderCtrl',
