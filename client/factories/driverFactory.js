@@ -5,6 +5,7 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
   dF.get = function(data, callback){
     $http.get('/driver/' + data)
     .then(function(res){
+
       callback(res);
     }).catch(function(err){
       console.log(err);
@@ -24,6 +25,16 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
     .then(function(res) {
       callback(res);
     }).catch(function(err) {
+      console.log(err);
+    });
+  };
+  dF.edit = function(id, data, callback){
+    console.log("@@ driver factory edit");
+    $http.put('/editdriver/'+ id, data)
+    .then(function(res){
+      console.log(res, "made back to edit factory");
+      callback(res);
+    }).catch(function(err){
       console.log(err);
     });
   };

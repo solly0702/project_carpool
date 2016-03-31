@@ -12,7 +12,12 @@ app.controller('carpoolCtrl', ['$scope', 'carpoolFactory', 'driverFactory', '$lo
     console.log("@ carpool controller");
     cF.index(function(data){
       carpool.users = data.data
-      console.log(data.data);
+      // console.log(data.data);
+    })
+  }
+  carpool.join = function(){
+    cF.join(carpool.currentUser.id, function(){
+
     })
   }
   carpool.index();

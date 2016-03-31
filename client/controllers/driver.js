@@ -74,6 +74,7 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
           if(status === map.GeocoderStatus.OK) {
             var coords = {
               city: loc[el],
+
               latitude: res[0].geometry.location.lat(),
               longitude: res[0].geometry.location.lng()
             };
