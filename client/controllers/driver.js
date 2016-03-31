@@ -1,7 +1,12 @@
 console.log("driver_CTRL");
+<<<<<<< HEAD
 app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "uiGmapGoogleMapApi",function($scope, dF, $loc, $cookies, uiGmapGoogleMapApi) {
+=======
+app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "$routeParams" ,function($scope, dF, $loc, $cookies, $routeParams) {
+>>>>>>> 221bc7353394d6b85987013cd2d7d916ca304872
 
   var driver = this;
+  var id = $routeParams.id
 
   driver.currentUser = {
     id: $cookies.get("user_id"),
@@ -16,11 +21,12 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     return arr;
   };
 
-  driver.create=function() {
+  driver.create = function() {
     dF.create(driver, function(res) {
       driver.drivers = res;
     });
   };
+
 
   driver.map = function() {
     uiGmapGoogleMapApi.then(function(map) {
@@ -61,5 +67,15 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     });
   };
 
+
+
+  driver.get = function(){
+    console.log("start driver.get ctlr", id);
+    dF.get(id, function(res){
+      driver.banana = res.data;
+      console.log(res.data);
+    });
+  };
+  driver.get();
 
 }]);

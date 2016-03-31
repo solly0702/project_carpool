@@ -2,6 +2,16 @@ console.log("driver_FR");
 app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
 
   var dF = {};
+  dF.get = function(data, callback){
+    console.log('start driver.get factory', data);
+    $http.get('/driver/' + data)
+    .then(function(res){
+      console.log('&&&&&&&&&&&&&&&&&&&', res);
+      callback(res);
+    }).catch(function(err){
+      console.log(err);
+    });
+  };
 
   dF.create = function(data, callback) {
     console.log("@@driver factory");

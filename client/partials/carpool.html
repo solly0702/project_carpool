@@ -1,23 +1,27 @@
-{{}}
-
-WE MADE IT!
-{{carpool.users[45]}}
-
-<table class='table table-striped'>
+<!-- <a ng-attr-href='{{carpool.currentUser.status}} === false' href="#/driver/{{carpool.currentUser.id}}" ng-click='carpool.get()'>{{carpool.currentUser.id}}</a> -->
+<a ng-if='(carpool.currentUser.status !== false)' href="#/rider/{{carpool.currentUser.id}}">{{carpool.currentUser.name}}</a>
+<!-- ng-click='driver.get(carpool.currentUser.id); -->
+{{carpool.currentUser.status}}
+<table id='carpools' class='table table-striped'>
+  <caption>
+    List of Current Available Carpools
+  </caption>
   <tr>
     <th>Driver Name</th>
     <th>Driver Location</th>
     <th>Driver Destination</th>
+    <th>Meeting Location</th>
     <th>Est. Departure Time</th>
     <th>Capacity</th>
-    <th>Request To Join</th>
+    <th ng-if='carpool.currentUser.status'>Request To Join</th>
   </tr>
-  <tr ng-repeat='user in carpool.users'>
-    <td>{{user.name}}</td>
+  <tr ng-repeat='user in carpool.users' ng-show='carpool.currentUser.status'>
+    <td><a href='#/driver/{{user._id}}'>{{user.name}}</a></td>
     <td>{{user._carpool.start_loc}}</td>
     <td>{{user._carpool.end_loc}}</td>
-    <td>{{user._carpool.time_plan}}</td>
+    <td>{{user._carpool.meeting_loc}}</td>
+    <td>{{user._carpool.time_plan | date: 'h:mma MM/dd'}}</td>
     <td>{{user._carpool.capacity}}</td>
-    <td><button ng-click='carpool.join()'>Join Carpool</button></td>
+    <td ng-if='user.status === true'><button ng-click='carpool.join()'>Join Carpool</button></td>
   </tr>
 </table>
