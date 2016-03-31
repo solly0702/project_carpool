@@ -36,13 +36,14 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     console.log('start driver.edit ctlr', id);
     dF.edit(id, driver, function(res){
       console.log(res);
+      driver.banana = res
       $loc.url('carpool')
     })
   };
-  console.log('banana');
+  // console.log('banana');
   driver.map = function() {
     uiGmapGoogleMapApi.then(function(map) {
-      console.log(map);
+      // console.log(map);
       driver.map = {
         center: {
           latitude: 47.609632,
@@ -60,7 +61,7 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     });
   };
   driver.map();
-  console.log('donut');
+  // console.log('donut');
   driver.geocoder = function() {
     uiGmapGoogleMapApi.then(function(map) {
       geocoder = new map.Geocoder();
@@ -78,6 +79,6 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
       });
     });
   };
-  console.log('asshole');
+  // console.log('asshole');
   driver.get();
 }]);

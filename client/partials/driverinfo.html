@@ -1,9 +1,10 @@
 Check Out Your Current Carpool Info
 <hr>
-
+{{driver.currentUser.id}}
+{{driver.banana}}
 <table id='carpools' class='table table-striped'>
   <caption>
-    you suck -- <a href="#/editdriver">Edit</a>
+    you suck -- <a ng-if='driver.currentUser.id === driver.banana._id' href="#/editdriver/{{driver.banana._id}}">Edit</a>
   </caption>
   <tr>
     <th>Name</th>
@@ -14,7 +15,7 @@ Check Out Your Current Carpool Info
     <th>Capacity</th>
   </tr>
   <tr>
-    <td>{{driver.banana.name}}</td>
+    <td>{{driver.banana._id}}</td>
     <td>{{driver.banana._carpool.start_loc}}</td>
     <td>{{driver.banana._carpool.end_loc}}</td>
     <td>{{driver.banana._carpool.meeting_loc}}</td>
