@@ -3,10 +3,12 @@ var app = angular.module("app", ["ngRoute", "ngCookies","uiGmapgoogle-maps"]);
 
 app.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
   GoogleMapApiProviders.configure({
+    transport:"https",
     china: true,
     key: 'AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4',
     v: '3.23', //defaults to latest 3.X anyhow
-    libraries: 'weather,geometry,visualization'
+    libraries: 'weather,geometry,visualization',
+    preventLoad: false
   });
 }]);
 

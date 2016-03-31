@@ -1,7 +1,7 @@
 <h2>Welcome~!! {{driver.currentUser.name}}</h2>
 
 <h3>Driver Infomation</h3>
-<form ng-submit="driver.create();">
+<form ng-submit="driver.create(); driver.geocoder();">
   <label for="start_loc">Start Location</label>
   <input type="text" id="start_loc" placeholder="Start Location" ng-model="driver.start_loc">
   <label for="end_loc">Destination</label>
@@ -17,4 +17,19 @@
 
 <h2>Google Map</h2>
 {{driver.map.center}} {{driver.map.zoom}}
-<ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+{{driver.marker.coords}}
+
+<div map-lazy-load="https://maps.googleapis.com/maps/api/js?v=3.23key=AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4">
+
+<ui-gmap-google-map id="map" center="driver.map.center" zoom="driver.map.zoom" draggable="true" options="options">
+
+  <!-- <ui-gmap-window coords="MapOptions.markers.selected.coords" show="windowOptions.show" options="windowOptions" closeClick="closeClick()">
+    <div>Hello</div>
+  </ui-gmap-window> -->
+  {{driver.marker.coords}}
+  <ui-gmap-marker coords="driver.map.center" options="" events="" control="" idkey="driver.marker.id">
+  </ui-gmap-marker>
+
+</ui-gmap-google-map>
+
+</div>

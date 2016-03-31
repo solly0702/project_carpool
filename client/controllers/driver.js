@@ -1,15 +1,7 @@
 console.log("driver_CTRL");
 app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "uiGmapGoogleMapApi",function($scope, dF, $loc, $cookies, uiGmapGoogleMapApi) {
-  console.log("@@@ here?");
-  var driver = this;
 
-  driver.map = {
-    center: {
-    latitude: 45,
-    longitude: -73
-    },
-    zoom:8
-  };
+  var driver = this;
 
   driver.currentUser = {
     id: $cookies.get("user_id"),
@@ -27,12 +19,47 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
   driver.create=function() {
     dF.create(driver, function(res) {
       driver.drivers = res;
-      console.log(driver.drivers);
-      $loc.url("carpool");
     });
   };
 
-  uiGmapGoogleMapApi.then(function(map) {
-    console.log(driver.map);
-  });
+  driver.map = function() {
+    uiGmapGoogleMapApi.then(function(map) {
+      console.log(map);
+      driver.map = {
+        center: {
+          latitude: 47.609632,
+          longitude: -122.19687
+        },
+        zoom: 13,
+      };
+      driver.marker = {
+        id: 0,
+        coords: {
+          latitude: "",
+          longitude: ""
+        }
+      };
+    });
+  };
+  driver.map();
+
+  driver.geocoder = function() {
+    uiGmapGoogleMapApi.then(function(map) {
+      geocoder = new map.Geocoder();
+      geocoder.geocode({"address": driver.start_loc}, function(res, status) {
+        console.log(res);
+        if(status === map.GeocoderStatus.OK) {
+          var latLng = {
+            latitude: res[0].geometry.location.lat(),
+            longitude: res[0].geometry.location.lng()
+          };
+          driver.map.center = latLng;
+        } else {
+          alert("Geocode not working " + status);
+        }
+      });
+    });
+  };
+
+
 }]);
