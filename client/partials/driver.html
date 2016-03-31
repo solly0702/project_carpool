@@ -1,16 +1,30 @@
-<h2>Welcome~!! {{driver.currentUser.name}}</h2>
 
-<h3>Driver Infomation</h3>
+<head>
+<style type=text/css>
+fieldset{
+  width: 300px;
+  margin: 0px auto;
+}
+
+</style>
+</head>
+
+
+<h2>Welcome~!! {{driver.currentUser.name}}</h2>
+<fieldset>
+
+<legend>Driver Infomation</legend>
 <form ng-submit="driver.create();">
   <label for="start_loc">Start Location</label>
-  <input type="text" id="start_loc" placeholer="Start Location" ng-model="driver.start_loc">
+  <input type="text" id="start_loc" placeholder="Start Location" ng-model="driver.start_loc"> <br>
   <label for="end_loc">Destination</label>
-  <input type="text" id="end_loc" placeholer="Destination" ng-model="driver.end_loc">
+  <input type="text" id="end_loc" placeholder="Destination" ng-model="driver.end_loc"><br>
   <label for="capacity">Capacity</label>
-  <select id="capacity" ng-model="driver.capacity" ng-options="idx for idx in driver.range(1,6);"></select>
-  <label for="time_plan">Planing Time</label>
-  <input type="time" id="time_plan" placeholer="time" ng-model="driver.time_plan">
+  <select id="capacity" ng-model="driver.capacity" ng-options="idx for idx in driver.range(1,6);"></select><br>
+  <label for="time_plan">Departure Time</label>
+  <input type="time" id="time_plan" ng-model="driver.time_plan"><br>
   <label for="meeting_loc">Meeting Location</label>
-  <input type="text" id="metting_loc" placeholer="Enter the location you would like to meet others" ng-model="driver.metting_loc">
+  <input type="text" id="metting_loc" placeholder="Enter the location you would like to meet others" ng-model="driver.meeting_loc"><br>
   <input type="submit" value="Submit">
 </form>
+</fieldset>

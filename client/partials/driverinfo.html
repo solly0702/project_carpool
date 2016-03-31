@@ -1,0 +1,24 @@
+Check Out Your Current Carpool Info
+<hr>
+
+<table id='carpools' class='table table-striped'>
+  <caption>
+    you suck
+  </caption>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Destination</th>
+    <th>Meeting Location</th>
+    <th>Est. Departure Time</th>
+    <th>Capacity</th>
+  </tr>
+  <tr>
+    <td>{{driver.banana.name}}</td>
+    <td>{{driver.banana._carpool.start_loc}}</td>
+    <td>{{driver.banana._carpool.end_loc}}</td>
+    <td>{{driver.banana._carpool.meeting_loc}}</td>
+    <td>{{driver.banana._carpool.time_plan | date: 'h:mma MM/dd'}}</td>
+    <td>{{driver.banana._carpool.capacity}}</td>
+  </tr>
+</table>

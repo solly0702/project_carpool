@@ -4,16 +4,28 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <style type=text/css>
+  body{
+  background-image: url('./styles/images/front.jpg');
+  }
   fieldset{
     width: 300px;
     margin: 0px auto;
   }
-
+  label{
+    color: white;
+  }
+  legend{
+    color: white;
+  }
+  h1{
+    margin: 0px auto;
+    color: white;
+  }
   </style>
 </head>
 <body>
   <fieldset>
-    <legend>Welcome!</legend>
+    <legend>Welcome! Behold! Dojo Pool</legend>
     <form ng-submit="user.create()">
       <input type="text" ng-model="user.name" placeholder='Name'>
         <input type="radio" ng-model='user.status' value="true" ng-checked="true"><label>Rider</label>
@@ -22,5 +34,9 @@
     </form>
 
   </fieldset>
+  <br>
+  <br>
+  <br>
+  <h1>Fitting 50 Students in 15 Parking Spots</h1>
 </body>
 </html>

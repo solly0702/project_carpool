@@ -11,6 +11,8 @@ module.exports = (function(app) {
   // app.get('/users/:id/edit', Users.edit);
   app.post('/login', Users.create);
   app.post("/carpool", Carpools.create);
+  app.get('/driver/:id', Users.getDriver);
+  app.get('/rider/:id', Users.getRider);
   // app.put('/users/:id', Users.update);
   app.put('/users/:id', Users.update);
   // app.delete('/users/:id', Users.delete);

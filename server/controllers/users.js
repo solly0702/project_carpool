@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Users = mongoose.model("users");
 
 var returnData = function(data) {
+  console.log(data);
   this.json(data);
 };
 var err_catch = function(err) {
@@ -39,8 +40,23 @@ module.exports=(function(app) {
         .then(returnData.bind(res))
         .catch(err_catch.bind(res));
         console.log(user);
-
       });
+    },
+    getDriver: function(req, res){
+      console.log("made to server ctrl", req.params.id);
+      Users.findById(req.params.id)
+      .populate('_carpool')
+      .exec()
+      .then(returnData.bind(res))
+      .catch(err_catch.bind(res));
+    },
+    getRider: function(req, res){
+      console.log("made to server ctrl", req.params.id);
+      Users.findById(req.params.id)
+      .populate('_carpool')
+      .exec()
+      .then(returnData.bind(res))
+      .catch(err_catch.bind(res));
     }
   };
 })();

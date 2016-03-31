@@ -24,8 +24,6 @@ var CarpoolSchema= new mongoose.Schema({
   time_plan: {
     type: Date,
     trim: true,
-    min: Date.now
-
   },
   meeting_loc: {
     type: String,
