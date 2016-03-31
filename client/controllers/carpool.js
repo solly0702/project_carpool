@@ -1,7 +1,13 @@
-app.controller('carpoolCtrl', ['$scope', 'carpoolFactory', 'driverFactory', '$location', '$cookies', function($scope, cF, dF, $loc, $cookies){
+app.controller('carpoolCtrl', ['$scope', 'carpoolFactory', 'driverFactory', '$location', '$cookies', '$routeParams', function($scope, cF, dF, $loc, $cookies, $routeParams){
 
   var carpool = this;
+  var id = $routeParams.id
 
+  carpool.currentUser = {
+    id: $cookies.get('user_id'),
+    name: $cookies.get('username'),
+    status: $cookies.get('status')
+  }
   carpool.index = function() {
     console.log("@ carpool controller");
     cF.index(function(data){
@@ -9,8 +15,15 @@ app.controller('carpoolCtrl', ['$scope', 'carpoolFactory', 'driverFactory', '$lo
       console.log(data.data);
     })
   }
+  carpool.index();
 
-carpool.index();
-
+  // carpool.get = function(id){
+  //   console.log("start carpool.get ctlr",id);
+  //   dF.get(id, function(res){
+  //     carpool.banana = res.data
+  //     console.log(res.data);
+  //   })
+  // }
+  // carpool.get()
 
 }])

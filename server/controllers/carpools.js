@@ -17,7 +17,7 @@ module.exports=(function(app) {
   return {
     create: function(req, res) {
      var carpool = new Carpools(req.body)
-     .save()
+     carpool.save()
      .then(function(carpool_data) {
        console.log("@carpool", carpool_data);
        Users.findById(req.body._user)

@@ -3,7 +3,7 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
 
   var rF = {};
   currentUser = {
-    id: $cookies.get('userid'),
+    id: $cookies.get('user_id'),
     name: $cookies.get('username')
   };
 
@@ -13,13 +13,22 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
     });
   };
   rF.update = function(rider, callback) {
-    // console.log('start rF update');
+    console.log($cookies.get('user_id'));
     console.log(rider);
     $http.put('/users/'+ currentUser.id, rider).then(function(res){
       // console.log('made it back to rF update');
       callback(res);
     });
   };
-
+  rF.get = function(data, callback){
+    console.log('start driver.get factory', data);
+    $http.get('/rider/' + data)
+    .then(function(res){
+      console.log('&&&&&&&&&&&&&&&&&&&', res);
+      callback(res);
+    }).catch(function(err){
+      console.log(err);
+    });
+  };
   return rF;
 }]);
