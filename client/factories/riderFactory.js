@@ -21,7 +21,7 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
     });
   };
   rF.get = function(data, callback){
-    console.log('start driver.get factory', data);
+    console.log('start rider.get factory', data);
     $http.get('/rider/' + data)
     .then(function(res){
       console.log('&&&&&&&&&&&&&&&&&&&', res);
@@ -30,5 +30,15 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
       console.log(err);
     });
   };
+  rF.edit = function(id, data, callback){
+    console.log("@@ rider factory edit");
+    $http.put('/editrider/'+ id, data)
+    .then(function(res){
+      console.log(res, "made back to edit factory");
+      callback(res);
+    }).catch(function(err){
+      console.log(err);
+    })
+  }
   return rF;
 }]);

@@ -3,6 +3,7 @@ console.log("driver_CTRL");
 app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies", "$routeParams", "uiGmapGoogleMapApi",function($scope, dF, $loc, $cookies, $routeParams,uiGmapGoogleMapApi) {
 
 
+
   var driver = this;
   var id = $routeParams.id;
   var loc = {
@@ -43,6 +44,22 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     });
   };
 
+  driver.get = function(){
+    // console.log("start driver.get ctlr", id);
+    dF.get(id, function(res){
+      driver.banana = res.data;
+      // console.log(res.data);
+    });
+  };
+
+  driver.edit = function(driver){
+    console.log('start driver.edit ctlr', id);
+    dF.edit(id, driver, function(res){
+      console.log(res);
+      driver.banana = res
+      $loc.url('carpool')
+    })
+  };
   driver.map = function() {
     uiGmapGoogleMapApi.then(function(map) {
       driver.map = {
@@ -90,6 +107,7 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     }
   };
 
+
   driver.geocoder = function() {
     uiGmapGoogleMapApi.then(function(map) {
       driver.code(loc, map, function(markerList){
@@ -101,5 +119,4 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
 
   driver.get();
   driver.geocoder();
-
 }]);
