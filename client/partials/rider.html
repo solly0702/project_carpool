@@ -9,15 +9,28 @@ fieldset{
 </head>
 
 <body>
-  Hello {{rider.currentUser.name}} {{rider.currentUser.id}}
+  <h2 align='center'>Hello {{rider.currentUser.name}}</h2>
   <fieldset>
     <legend>Enter Info!</legend>
     All Fields required
     <form ng-submit='rider.update()'>
-      Group Size: <input type='number' ng-model='rider.group_size'>
-      Contact Info: <input type="number" ng-model='rider.contact_info'>
-      Time you would like to leave: <input type="time" ng-model='rider.time'>
-      <input type="submit" value='Submit'>
+      <table>
+        <tr>
+          <td>Group Size: </td>
+          <td><input type='number' ng-model='rider.group_size'></td>
+        </tr>
+        <tr>
+          <td>Contact Info:</td>
+          <td><input type="number" ng-model='rider.contact_info'></td>
+        </tr>
+        <tr>
+          <td>Time to leave:</td>
+          <td><input type="time" ng-model='rider.time'></td>
+        </tr>
+          <tr>
+            <td><input type="submit" value='Submit'></td>
+          </tr>
+      </table>
     </form>
   </fieldset>
 </body>

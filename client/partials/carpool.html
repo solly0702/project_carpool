@@ -1,7 +1,6 @@
 <a ng-if='(carpool.currentUser.status == "true")' href="#/rider/{{carpool.currentUser.id}}">{{carpool.currentUser.name}}</a>
 <a ng-if='(carpool.currentUser.status == "false")' href="#/driver/{{carpool.currentUser.id}}">{{carpool.currentUser.name}}</a>
 <br>
-My status is {{carpool.currentUser.status}}
 <table id='carpools' class='table table-striped'>
   <caption>
     List of Current Available Carpools
@@ -20,7 +19,7 @@ My status is {{carpool.currentUser.status}}
     <td>{{user._carpool.start_loc}}</td>
     <td>{{user._carpool.end_loc}}</td>
     <td>{{user._carpool.meeting_loc}}</td>
-    <td>{{user._carpool.time_plan | date: 'h:mma MM/dd'}}</td>
+    <td>{{user._carpool.time_plan | date: 'h:mm a'}}</td>
     <td>{{user._carpool.capacity}}</td>
     <td ng-if='carpool.currentUser.status == "true"'><button ng-click='carpool.join()'>Join Carpool</button></td>
   </tr>

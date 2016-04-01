@@ -81,4 +81,5 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
   };
   // console.log('asshole');
   driver.get();
+  driver.geocoder();
 }]);

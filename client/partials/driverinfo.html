@@ -15,11 +15,11 @@ Check Out Your Current Carpool Info
     <th>Capacity</th>
   </tr>
   <tr>
-    <td>{{driver.banana._id}}</td>
+    <td>{{driver.banana.name}}</td>
     <td>{{driver.banana._carpool.start_loc}}</td>
     <td>{{driver.banana._carpool.end_loc}}</td>
     <td>{{driver.banana._carpool.meeting_loc}}</td>
-    <td>{{driver.banana._carpool.time_plan | date: 'h:mma MM/dd'}}</td>
+    <td>{{driver.banana._carpool.time_plan | date: 'h:mm a'}}</td>
     <td>{{driver.banana._carpool.capacity}}</td>
   </tr>
 </table>

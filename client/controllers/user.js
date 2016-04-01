@@ -9,6 +9,7 @@ app.controller("userCtrl", ["$scope", "userFactory", "$location", '$cookies', fu
   user.index();
 
   user.create = function() {
+    // console.log("ASFDASDFASDF", user);
     uF.create(user, function(res) {
       user.users = res;
       console.log(user.users);
