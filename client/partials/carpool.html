@@ -22,6 +22,6 @@ My status is {{carpool.currentUser.status}}
     <td>{{user._carpool.meeting_loc}}</td>
     <td>{{user._carpool.time_plan | date: 'h:mma MM/dd'}}</td>
     <td>{{user._carpool.capacity}}</td>
-    <td ng-if='carpool.currentUser.status == "true"'><button ng-click='carpool.join()'>Join Carpool</button></td>
+    <td ng-if='carpool.currentUser.status == "true"'><button ng-click='carpool.join(user._id)'>Join Carpool</button></td>
   </tr>
 </table>

@@ -32,6 +32,14 @@ var UserSchema= new mongoose.Schema({
     trim: true,
     // required:true
   },
+  allow: {
+    type: Boolean,
+    default: false
+  },
+  request: {
+    type: Boolean,
+    default: false
+  },
   _carpool: {
     type: Schema.Types.ObjectId,
     ref: "carpools"

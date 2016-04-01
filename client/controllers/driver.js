@@ -6,14 +6,6 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
 
   var driver = this;
   var id = $routeParams.id;
-  var loc = {
-    "start_loc": "",
-    "end_loc": "",
-    "meeting_loc": ""
-  };
-
-  var index = 0;
-  driver.markerList = [];
 
   driver.currentUser = {
     id: $cookies.get("user_id"),
@@ -28,15 +20,6 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
     return arr;
   };
 
-  driver.get = function(){
-    dF.get(id, function(res){
-      loc.start_loc = res.data._carpool.start_loc;
-      loc.end_loc = res.data._carpool.end_loc;
-      loc.meeting_loc = res.data._carpool.meeting_loc;
-      driver.banana = res.data;
-    });
-  };
-
   driver.create = function() {
     dF.create(driver, function(res) {
       driver.drivers = res;
@@ -45,21 +28,19 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
   };
 
   driver.get = function(){
-    // console.log("start driver.get ctlr", id);
     dF.get(id, function(res){
       driver.banana = res.data;
-      // console.log(res.data);
     });
   };
 
   driver.edit = function(driver){
     console.log('start driver.edit ctlr', id);
     dF.edit(id, driver, function(res){
-      console.log(res);
-      driver.banana = res
-      $loc.url('carpool')
-    })
+      driver.banana = res;
+      $loc.url('carpool');
+    });
   };
+
   driver.map = function() {
     uiGmapGoogleMapApi.then(function(map) {
       driver.map = {
@@ -119,4 +100,5 @@ app.controller("driverCtrl", ["$scope", "driverFactory", "$location", "$cookies"
 
   driver.get();
   driver.geocoder();
+
 }]);
