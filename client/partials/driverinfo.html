@@ -1,7 +1,5 @@
 Check Out Your Current Carpool Info
 <hr>
-{{driver.currentUser.id}}
-{{driver.banana}}
 <table id='carpools' class='table table-striped'>
   <caption>
     you suck -- <a ng-if='driver.currentUser.id === driver.banana._id' href="#/editdriver/{{driver.banana._id}}">Edit</a>
@@ -33,7 +31,7 @@ Check Out Your Current Carpool Info
 
   <ui-gmap-marker ng-repeat="marker in driver.markerList" idKey='marker.id' coords='marker.coords' anchorPoint="marker.coords.city">
     <ui-gmap-window isIconVisibleOnClick='true'>
-      <p>{{marker.coords.city}}</p> 
+      <p>{{marker.city}}</p>
     </ui-gmap-window>
   </ui-gmap-marker>
 

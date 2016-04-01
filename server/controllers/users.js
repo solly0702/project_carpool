@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var Users = mongoose.model("users");
 
 var returnData = function(data) {
-  console.log(data);
   this.json(data);
 };
 var err_catch = function(err) {
@@ -28,18 +27,13 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     },
     update: function(req,res){
-      console.log('@@ in user_update');
-      console.log(req.params);
       Users.findOne({_id:req.params.id}, function(err, user){
-        // console.log("++++++++++" + req.body.group_size, req.body.contact_info, req.body.time);
-        // console.log(user);
         user.group_size = req.body.group_size;
         user.contact_info = req.body.contact_info;
         user.time = req.body.time;
         user.save()
         .then(returnData.bind(res))
         .catch(err_catch.bind(res));
-        // console.log(user);
       });
     },
     getDriver: function(req, res){
@@ -59,10 +53,7 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     },
     editDriver: function(req, res){
-      console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id);
       Users.findById(req.params.id).populate('_carpool').exec(function(err, user){
-        console.log("ASDFASDFASDFASDFASDFASDF",user);
-        console.log("************************",req.body);
         user._carpool.meeting_loc = req.body.meeting_loc;
         user._carpool.end_loc = req.body.end_loc;
         user._carpool.start_loc = req.body.start_loc;
@@ -73,5 +64,32 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     });
   },
-}
+  join: function(req, res) {
+    Users.findById(req.params.id)
+    .then(function(user_data) {
+      console.log("@@",user_data);
+      if (user_data.request) {
+        user_data.request = false;
+      } else {
+        user_data.request = true;
+      }
+      user_data.save();
+    })
+    .then(returnData.bind(res))
+    .catch(err_catch.bind(res));
+  },
+  aloow: function(req, res) {
+    Users.findById(req.params.id)
+    .then(function(user_data) {
+      if (user_data.request) {
+        user_data.allow = false;
+      } else {
+        user_data.allow = true;
+      }
+      user_data.save();
+    })
+    .then(returnData.bind(res))
+    .catch(err_catch.bind(res));
+  }
+};
 })();
