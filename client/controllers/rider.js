@@ -5,7 +5,7 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
   var id = $routeParams.id
 
   rider.currentUser = {
-    id: $cookies.get('userid'),
+    id: $cookies.get('user_id'),
     name: $cookies.get('username')
   };
 
@@ -17,13 +17,19 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
   };
   rider.update = function(){
     rF.update(rider, function(res){
-      console.log(res);
+      // console.log(res);
       rider.users = res;
       $loc.url('carpool');
     });
   };
-
-  rider.index();
+  rider.edit = function(rider){
+    console.log('start rider.edit ctlr', id);
+    rF.edit(id, rider, function(res){
+      console.log(res);
+      rider.banana = res
+      $loc.url('rider/'+id)
+    })
+  };
   rider.get = function(){
     console.log("start rider.get ctlr", id);
     rF.get(id, function(res){
@@ -31,5 +37,6 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
       console.log(res.data);
     });
   };
+  rider.index();
   rider.get();
 }]);
