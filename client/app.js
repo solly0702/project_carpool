@@ -1,5 +1,16 @@
 console.log("angular_module&routes");
-var app = angular.module("app", ["ngRoute", "ngCookies"]);
+var app = angular.module("app", ["ngRoute", "ngCookies","uiGmapgoogle-maps"]);
+
+app.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
+  GoogleMapApiProviders.configure({
+    transport:"https",
+    china: true,
+    key: 'AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4',
+    v: '3.23', //defaults to latest 3.X anyhow
+    libraries: 'weather,geometry,visualization',
+    preventLoad: false
+  });
+}]);
 
 app.config(["$routeProvider", function($routeProvider) {
   $routeProvider
@@ -25,6 +36,11 @@ app.config(["$routeProvider", function($routeProvider) {
   })
   .when('/driver/:id', {
     templateUrl: "partials/driverinfo.html",
+    controller: 'driverCtrl',
+    controllerAs: 'driver'
+  })
+  .when('/editdriver/:id', {
+    templateUrl: "partials/editdriver.html",
     controller: 'driverCtrl',
     controllerAs: 'driver'
   })

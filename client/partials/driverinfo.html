@@ -1,9 +1,10 @@
 Check Out Your Current Carpool Info
 <hr>
-
+{{driver.currentUser.id}}
+{{driver.banana}}
 <table id='carpools' class='table table-striped'>
   <caption>
-    you suck
+    you suck -- <a ng-if='driver.currentUser.id === driver.banana._id' href="#/editdriver/{{driver.banana._id}}">Edit</a>
   </caption>
   <tr>
     <th>Name</th>
@@ -14,7 +15,7 @@ Check Out Your Current Carpool Info
     <th>Capacity</th>
   </tr>
   <tr>
-    <td>{{driver.banana.name}}</td>
+    <td>{{driver.banana._id}}</td>
     <td>{{driver.banana._carpool.start_loc}}</td>
     <td>{{driver.banana._carpool.end_loc}}</td>
     <td>{{driver.banana._carpool.meeting_loc}}</td>
@@ -22,3 +23,20 @@ Check Out Your Current Carpool Info
     <td>{{driver.banana._carpool.capacity}}</td>
   </tr>
 </table>
+
+<h2>Map</h2>
+
+
+<div map-lazy-load="https://maps.googleapis.com/maps/api/js?v=3.23key=AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4">
+
+<ui-gmap-google-map id="map" center="driver.map.center" zoom="driver.map.zoom" draggable="true" options="options" bounds="">
+
+  <ui-gmap-marker ng-repeat="marker in driver.markerList" idKey='marker.id' coords='marker.coords' anchorPoint="marker.coords.city">
+    <ui-gmap-window isIconVisibleOnClick='true'>
+      <p>{{marker.coords.city}}</p> 
+    </ui-gmap-window>
+  </ui-gmap-marker>
+
+</ui-gmap-google-map>
+
+</div>

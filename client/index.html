@@ -1,32 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" ng-app = "app">
 <head>
+
+
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+
+  <!-- bower component -->
   <meta charset="UTF-8">
-  <script src='/jquery/dist/jquery.min.js'></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-  <script src='bootstrap/dist/js/bootstrap.min.js'></script>
-  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="./styles/style.css">
   <script src='angular/angular.js'></script>
   <script src='angular-route/angular-route.js'></script>
   <script src="angular-cookies/angular-cookies.js"></script>
-  <script src ='app.js'></script>
+  <script src='/lodash/dist/lodash.js'></script>
+  <script src='/angular-simple-logger/dist/angular-simple-logger.js'></script>
+  <script src='/angular-google-maps/dist/angular-google-maps.js'></script>
+
   <!-- //factories-->
+  <script src ='app.js'></script>
   <script src='/factories/userFactory.js'></script>
   <script src='/factories/riderFactory.js'></script>
   <script src='/factories/driverFactory.js'></script>
   <script src='/factories/carpoolFactory.js'></script>
+
   <!-- //controllers-->
   <script src='/controllers/user.js'></script>
   <script src='/controllers/rider.js'></script>
   <script src='/controllers/driver.js'></script>
   <script src='/controllers/carpool.js'></script>
-  <title>Carpool App</title>
 
+  <!-- //bootstrap-->
+  <script src="/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/styles/style.css" media="screen" title="no title" charset="utf-8">
+  <title>Carpool App</title>
 
 </head>
 <body>
-<div ng-view></div>
+  <ng-view></ng-view>
+</body>
+</html>
+
+
+
+  </div>
 </body>
 </html>

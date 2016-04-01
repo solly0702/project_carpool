@@ -31,15 +31,15 @@ module.exports=(function(app) {
       console.log('@@ in user_update');
       console.log(req.params);
       Users.findOne({_id:req.params.id}, function(err, user){
-        console.log("++++++++++" + req.body.group_size, req.body.contact_info, req.body.time);
-        console.log(user);
+        // console.log("++++++++++" + req.body.group_size, req.body.contact_info, req.body.time);
+        // console.log(user);
         user.group_size = req.body.group_size;
         user.contact_info = req.body.contact_info;
         user.time = req.body.time;
         user.save()
         .then(returnData.bind(res))
         .catch(err_catch.bind(res));
-        console.log(user);
+        // console.log(user);
       });
     },
     getDriver: function(req, res){
@@ -57,6 +57,21 @@ module.exports=(function(app) {
       .exec()
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
-    }
-  };
+    },
+    editDriver: function(req, res){
+      console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id);
+      Users.findById(req.params.id).populate('_carpool').exec(function(err, user){
+        console.log("ASDFASDFASDFASDFASDFASDF",user);
+        console.log("************************",req.body);
+        user._carpool.meeting_loc = req.body.meeting_loc;
+        user._carpool.end_loc = req.body.end_loc;
+        user._carpool.start_loc = req.body.start_loc;
+        user._carpool.capacity = req.body.capacity;
+        user._carpool.time_plan = req.body.time_plan;
+        user._carpool.save()
+      .then(returnData.bind(res))
+      .catch(err_catch.bind(res));
+    });
+  },
+}
 })();

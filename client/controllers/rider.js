@@ -7,7 +7,7 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
   rider.currentUser = {
     id: $cookies.get('userid'),
     name: $cookies.get('username')
-  }
+  };
 
   rider.index = function() {
     rF.index(function(res) {
@@ -19,9 +19,10 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
     rF.update(rider, function(res){
       console.log(res);
       rider.users = res;
-      $loc.url('carpool')
-    })
-  }
+      $loc.url('carpool');
+    });
+  };
+
   rider.index();
   rider.get = function(){
     console.log("start rider.get ctlr", id);

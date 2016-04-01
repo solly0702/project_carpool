@@ -17,6 +17,8 @@ var server = app.listen(8000, function() {
   console.log("listening on port 8000");
 });
 
+var io = require('socket.io').listen(server);
+require("./server/controllers/socketcontroller.js")(io);
 // 1. express_server setup
 // 2. main_server connects to server/config/routes.js
 // 3. server/config/mongoose.js setup and connects to main_server
