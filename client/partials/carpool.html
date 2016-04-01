@@ -13,7 +13,6 @@ My status is {{carpool.currentUser.status}}
     <th>Meeting Location</th>
     <th>Est. Departure Time</th>
     <th>Capacity</th>
-
     <th ng-if='carpool.currentUser.status == "true"'>Request To Join</th>
   </tr>
   <tr ng-repeat='user in carpool.users' ng-if='user.status === false'>

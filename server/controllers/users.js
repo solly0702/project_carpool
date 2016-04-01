@@ -59,10 +59,9 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     },
     editDriver: function(req, res){
-      console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id);
+
+      // console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id);
       Users.findById(req.params.id).populate('_carpool').exec(function(err, user){
-        console.log("ASDFASDFASDFASDFASDFASDF",user);
-        console.log("************************",req.body);
         user._carpool.meeting_loc = req.body.meeting_loc;
         user._carpool.end_loc = req.body.end_loc;
         user._carpool.start_loc = req.body.start_loc;
@@ -73,5 +72,19 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     });
   },
+
+  editRider: function(req, res){
+    console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id, "^^^^^^", req.body, "&&&&&&&&&&&");
+    Users.findById(req.params.id, function(err, user){
+      console.log("***************", user);
+      console.log("****************", req.body);
+      user.group_size = req.body.group_size;
+      user.contact_info = req.body.contact_info;
+      user.time = req.body.time;
+      user.save()
+    .then(returnData.bind(res))
+    .catch(err_catch.bind(res));
+  });
+},
 }
 })();

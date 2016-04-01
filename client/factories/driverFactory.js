@@ -38,6 +38,5 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
       console.log(err);
     });
   };
-
   return dF;
 }]);
