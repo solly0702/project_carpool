@@ -8,21 +8,33 @@ fieldset{
 </style>
 </head>
 
-<h2>Welcome~!! {{driver.currentUser.name}}</h2>
+<h2 align='center'>Welcome~!! {{driver.currentUser.name}}</h2>
 <fieldset>
 
 <legend>Driver Infomation</legend>
 <form ng-submit="driver.create(); driver.geocoder();">
-  <label for="start_loc">Start Location</label>
-  <input type="text" id="start_loc" placeholder="Start Location" ng-model="driver.start_loc"> <br>
-  <label for="end_loc">Destination</label>
-  <input type="text" id="end_loc" placeholder="Destination" ng-model="driver.end_loc"><br>
-  <label for="meeting_loc">Meeting Location</label>
-  <input type="text" id="meeting_loc" placeholder="Enter the location you would like to meet others" ng-model="driver.meeting_loc"><br>
-  <label for="capacity">Capacity</label>
-  <select id="capacity" ng-model="driver.capacity" ng-options="idx for idx in driver.range(1,6);"></select><br>
-  <label for="time_plan">Departure Time</label>
-  <input type="time" id="time_plan" ng-model="driver.time_plan"><br>
+  <table>
+    <tr>
+      <td>Start Location</td>
+      <td><input type="text" id="start_loc" ng-model="driver.start_loc"></td>
+    </tr>
+    <tr>
+      <td>Destination</td>
+      <td><input type="text" id="end_loc"ng-model="driver.end_loc"></td>
+    </tr>
+    <tr>
+      <td>Meeting Location</td>
+      <td>  <input type="text" id="meeting_loc" ng-model="driver.meeting_loc"></td>
+    </tr>
+    <tr>
+      <td>Capacity</td>
+      <td><select id="capacity" ng-model="driver.capacity" ng-options="idx for idx in driver.range(1,6);"></select></td>
+    </tr>
+    <tr>
+      <td>Time</td>
+      <td><input type="time" id="time_plan" ng-model="driver.time_plan"></td>
+    </tr>
+  </table>
   <input type="submit" value="Submit">
 </form>
 </fieldset>

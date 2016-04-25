@@ -1,9 +1,15 @@
 Check Out Your Current Carpool Info
 <hr>
+<<<<<<< HEAD
 {{rider.users}}
+=======
+asdfasdfasfd {{rider.users._id}} <br>
+{{rider.currentUser.id}}
+
+>>>>>>> 991b95ee404a50fa243e95a4b740e724f435dd83
 <table id='carpools' class='table table-striped'>
   <caption>
-    you suck
+    you suck -- <a ng-if='rider.currentUser.id === rider.users._id' href="#/editrider/{{rider.users._id}}">Edit</a>
   </caption>
   <tr>
     <th>Name</th>

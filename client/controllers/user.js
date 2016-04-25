@@ -5,10 +5,12 @@ app.controller("userCtrl", ["$scope", "userFactory", "$location", '$cookies', fu
   user.index = function(){
     $cookies.remove('user_id'),
     $cookies.remove('username')
-  }
+  };
+
   user.index();
 
   user.create = function() {
+    // console.log("ASFDASDFASDF", user);
     uF.create(user, function(res) {
       user.users = res;
       console.log(user.users);

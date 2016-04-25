@@ -64,6 +64,20 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     });
   },
+
+  editRider: function(req, res){
+    console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id, "^^^^^^", req.body, "&&&&&&&&&&&");
+    Users.findById(req.params.id, function(err, user){
+      console.log("***************", user);
+      console.log("****************", req.body);
+      user.group_size = req.body.group_size;
+      user.contact_info = req.body.contact_info;
+      user.time = req.body.time;
+      user.save()
+    .then(returnData.bind(res))
+    .catch(err_catch.bind(res));
+  });
+},
   join: function(req, res) {
     Users.findById(req.params.id)
     .then(function(user_data) {

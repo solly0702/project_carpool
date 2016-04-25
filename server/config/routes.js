@@ -16,7 +16,7 @@ module.exports = (function(app) {
   app.put('/join/:id', Users.join);
   app.put('/allow/:id', Users.join);
   app.get('/rider/:id', Users.getRider);
-
+  app.put('/editrider/:id', Users.editRider);
   // app.put('/users/:id', Users.update);
   app.put('/users/:id', Users.update);
   // app.delete('/users/:id', Users.delete);

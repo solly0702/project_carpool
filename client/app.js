@@ -49,6 +49,11 @@ app.config(["$routeProvider", function($routeProvider) {
     controller: 'riderCtrl',
     controllerAs: 'rider'
   })
+  .when('/editrider/:id', {
+    templateUrl: "partials/editrider.html",
+    controller: 'riderCtrl',
+    controllerAs: 'rider'
+  })
   .otherwise({
     redirectTo: "/index"
   });

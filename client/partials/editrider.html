@@ -1,0 +1,25 @@
+Check Out Your Current Carpool Info
+<hr>
+<table id='carpools' class='table table-striped'>
+  <caption>
+    you suck
+  </caption>
+  <tr>
+    <!-- <th>Name</th> -->
+    <th>Group Size</th>
+    <th>Contact Info</th>
+    <th>Meeting Time</th>
+  </tr>
+  <tr>
+    <form>
+    <!-- <td><input type="text" ng.model='rider.name'</td> -->
+    <td><input type="number" ng-model="rider.group_size" ></td>
+    <td><input type="number" ng-model="rider.contact_info" ></td>
+    <td><input type="time" ng-model="rider.time" ></td>
+  </tr>
+  <tr>
+  <td><input type='submit' ng-click='rider.edit(rider)' value='Submit'></td>
+</form>
+</tr>
+
+</table>

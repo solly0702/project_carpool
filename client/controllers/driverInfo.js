@@ -48,7 +48,7 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
     });
   };
 
-  driver.code = function(loc,map, callback) {
+  driver.code = function(loc,map,callback) {
     for (let el in loc) {
       geocoder = new map.Geocoder();
         geocoder.geocode({"address": loc[el]}, function(res, status)  {
@@ -76,33 +76,11 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
     });
   };
 
-  // driver.dist_service = function() {
-  //   uiGmapGoogleMapApi.then(function(map) {
-  //     service = new map.DistanceMatrixService;
-  //     console.log(driver.markerList);
-  //     service.getDistanceMatrix({
-  //       origins: [coords[0].coords, cords[1].coords],
-  //       destinations: [coords[1].coords, cords[2].coords],
-  //       travelMode: map.TravelMode.DRIVING,
-  //       unitSystem: map.UnitSystem.METRIC,
-  //       avoidHighways: false,
-  //       avoidTolls: false
-  //     }), function(res, status) {
-  //       if(status !== map.DistanceMatrixStatus.OK) {
-  //         alert("You should go by your self due to" + status);
-  //       } else{
-  //         console.log(res);
-  //       }
-  //     }
-  //   });
-  // };
-
   driver.get();
 
   uiGmapIsReady.promise()
     .then(driver.geocoder())
     .then(driver.map())
-    // .then(driver.dist_service())
     .catch(function(err) {
       console.log(err);
   });
