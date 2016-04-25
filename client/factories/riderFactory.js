@@ -7,11 +7,6 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
     name: $cookies.get('username')
   };
 
-  rF.index = function(callback) {
-    $http.get("/users").then(function(res) {
-      callback(res.data);
-    });
-  };
   rF.update = function(rider, callback) {
     console.log($cookies.get('user_id'));
     console.log(rider);
@@ -20,11 +15,14 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
       callback(res);
     });
   };
+  
   rF.get = function(data, callback){
+<<<<<<< HEAD
     console.log('start rider.get factory', data);
+=======
+>>>>>>> production
     $http.get('/rider/' + data)
     .then(function(res){
-      console.log('&&&&&&&&&&&&&&&&&&&', res);
       callback(res);
     }).catch(function(err){
       console.log(err);

@@ -1,10 +1,10 @@
 Check Out Your Current Carpool Info
 <hr>
-asdfasdfasfd {{rider.banana._id}} <br>
+asdfasdfasfd {{rider.users._id}} <br>
 {{rider.currentUser.id}}
 <table id='carpools' class='table table-striped'>
   <caption>
-    you suck -- <a ng-if='rider.currentUser.id === rider.banana._id' href="#/editrider/{{rider.banana._id}}">Edit</a>
+    you suck -- <a ng-if='rider.currentUser.id === rider.users._id' href="#/editrider/{{rider.users._id}}">Edit</a>
   </caption>
   <tr>
     <th>Name</th>
@@ -13,9 +13,9 @@ asdfasdfasfd {{rider.banana._id}} <br>
     <th>Contact Info</th>
   </tr>
   <tr>
-    <td>{{rider.banana.name}}</td>
-    <td>{{rider.banana.group_size}}</td>
-    <td>{{rider.banana.time}}</td>
-    <td>{{rider.banana.contact_info}}</td>
+    <td>{{rider.users.name}}</td>
+    <td>{{rider.users.group_size}}</td>
+    <td>{{rider.users.time}}</td>
+    <td>{{rider.users.contact_info}}</td>
   </tr>
 </table>
