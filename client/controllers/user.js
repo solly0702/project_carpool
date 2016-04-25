@@ -3,7 +3,7 @@ app.controller("userCtrl", ["$scope", "userFactory", "$location", '$cookies', fu
 
   var user = this;
   user.index = function(){
-    $cookies.remove('userid'),
+    $cookies.remove('user_id'),
     $cookies.remove('username')
   }
   user.index();
