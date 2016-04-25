@@ -17,7 +17,7 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
   };
   rider.update = function(){
     rF.update(rider, function(res){
-      // console.log(res);
+      console.log(res);
       rider.users = res;
       $loc.url('carpool');
     });
@@ -25,7 +25,7 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
   rider.edit = function(rider){
     console.log('start rider.edit ctlr', id);
     rF.edit(id, rider, function(res){
-      console.log(res);
+      // console.log(res);
       rider.banana = res
       $loc.url('rider/'+id)
     })
@@ -34,7 +34,7 @@ app.controller("riderCtrl", ["$scope", "riderFactory", '$location', '$cookies', 
     console.log("start rider.get ctlr", id);
     rF.get(id, function(res){
       rider.banana = res.data
-      console.log(res.data);
+      // console.log(res.data);
     });
   };
   rider.index();

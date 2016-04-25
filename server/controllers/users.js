@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Users = mongoose.model("users");
 
 var returnData = function(data) {
-  console.log(data);
+  // console.log(data);
   this.json(data);
 };
 var err_catch = function(err) {
