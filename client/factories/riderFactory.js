@@ -8,19 +8,16 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
   };
 
   rF.update = function(rider, callback) {
-    console.log($cookies.get('user_id'));
-    console.log(rider);
+    // console.log($cookies.get('user_id'));
+    // console.log(rider);
     $http.put('/users/'+ currentUser.id, rider).then(function(res){
       // console.log('made it back to rF update');
       callback(res);
     });
   };
-  
+
   rF.get = function(data, callback){
-<<<<<<< HEAD
     console.log('start rider.get factory', data);
-=======
->>>>>>> production
     $http.get('/rider/' + data)
     .then(function(res){
       callback(res);
@@ -32,7 +29,7 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
     console.log("@@ rider factory edit");
     $http.put('/editrider/'+ id, data)
     .then(function(res){
-      console.log(res, "made back to edit factory");
+      // console.log(res, "made back to edit factory");
       callback(res);
     }).catch(function(err){
       console.log(err);

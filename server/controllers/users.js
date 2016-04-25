@@ -53,11 +53,6 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     },
     editDriver: function(req, res){
-<<<<<<< HEAD
-
-      // console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id);
-=======
->>>>>>> production
       Users.findById(req.params.id).populate('_carpool').exec(function(err, user){
         user._carpool.meeting_loc = req.body.meeting_loc;
         user._carpool.end_loc = req.body.end_loc;
@@ -69,7 +64,6 @@ module.exports=(function(app) {
       .catch(err_catch.bind(res));
     });
   },
-<<<<<<< HEAD
 
   editRider: function(req, res){
     console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id, "^^^^^^", req.body, "&&&&&&&&&&&");
@@ -84,8 +78,6 @@ module.exports=(function(app) {
     .catch(err_catch.bind(res));
   });
 },
-}
-=======
   join: function(req, res) {
     Users.findById(req.params.id)
     .then(function(user_data) {
@@ -114,5 +106,4 @@ module.exports=(function(app) {
     .catch(err_catch.bind(res));
   }
 };
->>>>>>> production
 })();
