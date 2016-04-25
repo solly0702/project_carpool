@@ -15,10 +15,20 @@ app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
       callback(res);
     });
   };
-  
+
   rF.get = function(data, callback){
     $http.get('/rider/' + data)
     .then(function(res){
+      callback(res);
+    }).catch(function(err){
+      console.log(err);
+    });
+  };
+  rF.edit = function(id, data, callback){
+    console.log("@@ rider factory edit");
+    $http.put('/editrider/'+ id, data)
+    .then(function(res){
+      console.log(res, "made back to edit factory");
       callback(res);
     }).catch(function(err){
       console.log(err);
