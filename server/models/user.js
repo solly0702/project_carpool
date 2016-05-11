@@ -2,6 +2,7 @@ console.log("user_Model_connections");
 //basic model
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+
 var UserSchema= new mongoose.Schema({
   name: {
     type: String,
@@ -29,25 +30,26 @@ var UserSchema= new mongoose.Schema({
   },
   time:{
     type: Date,
-    trim: true,
-    // required:true
+    trim: true
   },
-  allow: {
-    type: Boolean,
-    default: false
+  carpools: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'carpools'
+    }],
+    default: []
   },
-  request: {
-    type: Boolean,
-    default: false
-  },
-  _carpool: {
-    type: Schema.Types.ObjectId,
-    ref: "carpools"
+  joins: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'joins'
+    }],
+    default: []
   },
   }, {timestamps: {
     createdAt: "created_at",
     updatedAt: "updated_at"
     }
   });
-
+// schema.path("created_at").expires("60");
 mongoose.model("users", UserSchema);

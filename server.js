@@ -16,13 +16,3 @@ require("./server/config/routes.js")(app);
 var server = app.listen(8000, function() {
   console.log("listening on port 8000");
 });
-
-var io = require('socket.io').listen(server);
-require("./server/controllers/socketcontroller.js")(io);
-// 1. express_server setup
-// 2. main_server connects to server/config/routes.js
-// 3. server/config/mongoose.js setup and connects to main_server
-// 4. setup server/models/MODEL_NAME (SINGULAR IN MODEL, PLURALS IN CONTROLLERS )
-// 5. setup controller connecting to DB and routes connects to controller
-//    routes >> controllers >> DB
-// 6. setup controller and connects to view and then routes

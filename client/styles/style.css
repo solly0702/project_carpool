@@ -1,7 +1,30 @@
-
 .angular-google-map-container { height: 370px; }
 
-#carpools{
-  margin: 0px auto;
-  width:70%;
+body {
+background-image: url('./images/front.jpg');
+color: white;
+}
+
+caption {
+  color: #f7e3e3;
+}
+
+legend {
+  color: #f7e3e3;
+}
+
+.google_map {
+  color: black;
+}
+
+.margin-top-header {
+  margin-top: 150px;
+}
+
+.margin-top-20px {
+  margin-top: 20px;
+}
+
+.margin-bottom-20px {
+  margin-bottom: 20px;
 }

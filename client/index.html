@@ -2,15 +2,21 @@
 <html lang="en" ng-app = "app">
 <head>
 
-
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
 
   <!-- bower component -->
-  <meta charset="UTF-8">
   <script src='angular/angular.js'></script>
   <script src='angular-route/angular-route.js'></script>
   <script src="angular-cookies/angular-cookies.js"></script>
+  <link tpye="text/css" rel="stylesheet" href="angular-flash-alert/dist/angular-flash.min.css" />
+  <script src="angular-flash-alert/dist/angular-flash.js"></script>
+  <link rel="stylesheet" href="angularjs-datetime-picker/angularjs-datetime-picker.css" />
+  <script src="angularjs-datetime-picker/angularjs-datetime-picker.js"></script>
+  <script src="/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.min.css">
   <script src='/lodash/dist/lodash.js'></script>
   <script src='/angular-simple-logger/dist/angular-simple-logger.js'></script>
   <script src='/angular-google-maps/dist/angular-google-maps.js'></script>
@@ -27,21 +33,24 @@
   <script src='/controllers/rider.js'></script>
   <script src='/controllers/driver.js'></script>
   <script src='/controllers/carpool.js'></script>
-  <script src="/controllers/driverInfo.js" charset="utf-8"></script>
+  <script src="/controllers/driverInfo.js"></script>
 
-  <!-- //bootstrap-->
-  <script src="/jquery/dist/jquery.min.js" charset="utf-8"></script>
-  <script src="/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" href="/styles/style.css" media="screen" title="no title" charset="utf-8">
+
   <title>Carpool App</title>
+
+  <base href="/"/>
 
 </head>
 <body>
-  <a href="/#/carpool">See all Carpools</a> --
-  <a href="/">Logout</a> --  
-  <ng-view></ng-view>
+  <div class="container">
+    <div class="flash-message margin-top-20px">
+      <flash-message duration="3000", show-close="true", on-dismiss="" ></flash-message>
+    </div>
+
+      <div ng-view></div>
+    </div>
+  </div>
 </body>
 </html>
 

@@ -3,10 +3,16 @@ console.log("carpool_Model_connections");
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 var CarpoolSchema= new mongoose.Schema({
-
   _user: {
     type: Schema.Types.ObjectId,
-    ref: "uses"
+    ref: "users"
+  },
+  joins: {
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: "joins"
+    }],
+    default: [],
   },
   start_loc: {
     type: String,
@@ -23,6 +29,7 @@ var CarpoolSchema= new mongoose.Schema({
   },
   time_plan: {
     type: Date,
+    min: Date(new Date().toLocaleString()),
     trim: true,
   },
   meeting_loc: {
@@ -36,3 +43,12 @@ var CarpoolSchema= new mongoose.Schema({
   });
 
 mongoose.model("carpools", CarpoolSchema);
+
+CarpoolSchema.pre("remove", function(next) {
+  this.model("users").update(
+    {_id: {$in: this._user}},
+    {$pull: {carpools: this._id}},
+    {multi: true},
+    next
+  );
+});

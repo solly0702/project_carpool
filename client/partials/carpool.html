@@ -1,26 +1,67 @@
-<a ng-if='(carpool.currentUser.status == "true")' href="#/rider/{{carpool.currentUser.id}}">{{carpool.currentUser.name}}</a>
-<a ng-if='(carpool.currentUser.status == "false")' href="#/driver/{{carpool.currentUser.id}}">{{carpool.currentUser.name}}</a>
-<br>
-<table id='carpools' class='table table-striped'>
+<a href="/#/index" class="btn btn-danger btn-lg"> << Main</a>
+<a href="/#/driver" class="btn btn-success btn-lg pull-right btn-create" ng-if="carpool.currentUser.status == 'false'">Create Carpool Schedule</a>
+<table id='carpools' class='table table table-carpools'>
   <caption>
-    List of Current Available Carpools
+    <h2 align="center" class="margin-bottom-20px">List of Current Available Carpools for {{carpool.currentUser.name}}</h2>
   </caption>
-  <tr>
-    <th>Driver Name</th>
-    <th>Driver Location</th>
-    <th>Driver Destination</th>
-    <th>Meeting Location</th>
-    <th>Est. Departure Time</th>
-    <th>Capacity</th>
-    <th ng-if='carpool.currentUser.status == "true"'>Request To Join</th>
-  </tr>
-  <tr ng-repeat='user in carpool.users' ng-if='user.status === false'>
-    <td><a href='#/driver/{{user._id}}'>{{user.name}}</a></td>
-    <td>{{user._carpool.start_loc}}</td>
-    <td>{{user._carpool.end_loc}}</td>
-    <td>{{user._carpool.meeting_loc}}</td>
-    <td>{{user._carpool.time_plan | date: 'h:mm a'}}</td>
-    <td>{{user._carpool.capacity}}</td>
-    <td ng-if='carpool.currentUser.status == "true"'><button ng-click='carpool.join(user._id)'>Join Carpool</button></td>
-  </tr>
+  <thead>
+    <tr>
+      <th>Driver Name</th>
+      <th>Driver Location</th>
+      <th>Driver Destination</th>
+      <th>Meeting Location</th>
+      <th>Est. Departure Time</th>
+      <th>Capacity</th>
+      <!-- for driver -->
+      <th ng-if="carpool.currentUser.status == 'false'">Editable</th>
+      <th ng-if="carpool.currentUser.status == 'false'">Deletable</th>
+      <!-- for rider -->
+      <th ng-if="carpool.currentUser.status == 'true'">Request To Join</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat='data in carpool.pool | orderBy: "data.time_plan"'>
+      <tr>
+        <td><a href='#/driver/{{data._id}}'>{{data._user.name}}</a></td>
+        <td>{{data.start_loc}}</td>
+        <td>{{data.end_loc}}</td>
+        <td>{{data.meeting_loc}}</td>
+        <td>{{data.time_plan | date: 'MMM, dd, yy, h:mma'}}</td>
+        <td>{{data.capacity}}</td>
+
+        <!-- for drivar -->
+        <td ng-if="carpool.currentUser.status === 'false' && carpool.currentUser.id === data._user._id"><a href="#/editdriver/{{data._id}}" class="btn btn-info">Edit</a></td>
+        <td ng-if="carpool.currentUser.status == 'false' && carpool.currentUser.id === data._user._id"><button ng-click="carpool.delete(data._id) "class="btn btn-danger">Delete</button></td>
+
+        <!-- for rider -->
+        <td ng-if="data.capacity > 0 && carpool.currentUser.status == 'true'"><button ng-click='carpool.request(data._id);' class="btn btn-info">Request Carpool</button></td>
+        <td ng-if="data.capacity == 0"><p>Spots are not available..</p>
+      </tr>
+  </tbody>
 </table>
+
+<div class="table-joins" ng-if="carpool.join_db.joins.length > 0">
+  <table class= "table table">
+    <caption>
+      <h2 align="center">Carpool request List for {{carpool.currentUser.name}}</h2>
+    </caption>
+    <thead>
+      <tr>
+        <th>Driver Name</th>
+        <th>Suggested Meeting Location</th>
+        <th>Plan to do carpool</th>
+        <th>Status</th>
+        <th>Cancel the scheduled carpool</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="data in carpool.join_db.joins | orderBy:'el._carpool.updated_at'">
+      <tr>
+        <td>{{data._carpool._user.name}}</td>
+        <td>{{data._carpool.meeting_loc}}</td>
+        <td>{{data._carpool.time_plan | date: "MMM, dd, yy, h:mma"}}</td>
+        <td ng-if="!data.status">Pending</td>
+        <td ng-if="data.status">Accepted</td>
+        <td><button type="button" name="delete_join" class="btn btn-success center" ng-click="carpool.cancel(data._carpool._id, data._id );">Cancel</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

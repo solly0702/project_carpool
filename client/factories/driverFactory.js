@@ -2,10 +2,9 @@ console.log("driver_FR");
 app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
 
   var dF = {};
-  dF.get = function(data, callback){
-    $http.get('/driver/' + data)
+  dF.get = function(id, callback){
+    $http.get('/carpool/' + id)
     .then(function(res){
-
       callback(res);
     }).catch(function(err){
       console.log(err);
@@ -28,14 +27,31 @@ app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
       console.log(err);
     });
   };
+
   dF.edit = function(id, data, callback){
-    $http.put('/editdriver/'+ id, data)
+    var carpool = {
+      start_loc: data.start_loc,
+      end_loc: data.end_loc,
+      meeting_loc: data.meeting_loc,
+      time_plan: data.time_plan,
+      capacity: data.capacity
+    };
+    $http.patch('/editdriver/'+ id, carpool)
     .then(function(res){
-      console.log(res, "made back to edit factory");
       callback(res);
     }).catch(function(err){
       console.log(err);
     });
   };
+
+  dF.allow = function(id, callback) {
+    $http.patch("/joins/" + id)
+    .then(function(res) {
+      callback(res);
+    }).catch(function(err) {
+      console.log(err);
+    });
+  };
+
   return dF;
 }]);

@@ -9,9 +9,10 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
     "end_loc": "",
     "meeting_loc": ""
   };
-
   var index = 0;
   driver.markerList = [];
+
+  var driver_id = $routeParams.id;
 
   driver.currentUser = {
     id: $cookies.get("user_id"),
@@ -19,12 +20,16 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
   };
 
   driver.get = function(){
-    dF.get(id, function(res){
-      loc.start_loc = res.data._carpool.start_loc;
-      loc.end_loc = res.data._carpool.end_loc;
-      loc.meeting_loc = res.data._carpool.meeting_loc;
-      driver.banana = res.data;
+    dF.get(driver_id, function(res){
+      loc.start_loc = res.data.start_loc;
+      loc.end_loc = res.data.end_loc;
+      loc.meeting_loc = res.data.meeting_loc;
+      driver.driver = res.data;
     });
+  };
+
+  driver.allow = function(join_id) {
+    dF.allow(join_id, driver.get);
   };
 
   driver.map = function() {
@@ -71,7 +76,6 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
   driver.geocoder = function() {
     uiGmapGoogleMapApi.then(function(map) {
       driver.code(loc, map, function(markerList){
-        console.log(markerList);
       });
     });
   };
@@ -79,13 +83,10 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
   driver.get();
 
   uiGmapIsReady.promise()
-    .then(driver.geocoder())
-    .then(driver.map())
-    .catch(function(err) {
-      console.log(err);
+  .then(driver.geocoder())
+  .then(driver.map())
+  .catch(function(err) {
+    console.log(err);
   });
-
-
-
 
 }]);

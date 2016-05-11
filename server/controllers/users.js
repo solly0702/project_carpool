@@ -15,33 +15,35 @@ module.exports=(function(app) {
   return {
     index: function(req, res) {
       Users.find({})
-      .populate("_carpool")
+      .populate({ path: "carpools", populate: {path: "joins"}})
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
     },
     create: function(req, res) {
-      console.log("@@ in user_creation");
-      var user = new Users(req.body)
-      .save()
-      .then(returnData.bind(res))
+      Users.findOne({name: req.body.name})
+      .then(function(user_data) {
+         if (user_data) {
+           user_data.status = req.body.status;
+           user_data.save();
+           return res.json(user_data);
+         }
+         else {
+           var user = new Users(req.body)
+           .save()
+           .then(returnData.bind(res));
+         }
+      })
       .catch(err_catch.bind(res));
     },
     update: function(req,res){
-      Users.findOne({_id:req.params.id}, function(err, user){
-        user.group_size = req.body.group_size;
-        user.contact_info = req.body.contact_info;
-        user.time = req.body.time;
-        user.save()
-        .then(returnData.bind(res))
-        .catch(err_catch.bind(res));
-      });
-    },
-    getDriver: function(req, res){
-      console.log("made to server ctrl", req.params.id);
       Users.findById(req.params.id)
-      .populate('_carpool')
-      .exec()
-      .then(returnData.bind(res))
+      .then(function(user_data) {
+        user_data.group_size = req.body.group_size;
+        user_data.contact_info = req.body.contact_info;
+        user_data.time = req.body.time;
+        user_data.save()
+        .then(returnData.bind(res));
+        })
       .catch(err_catch.bind(res));
     },
     getRider: function(req, res){
@@ -52,58 +54,15 @@ module.exports=(function(app) {
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
     },
-    editDriver: function(req, res){
-      Users.findById(req.params.id).populate('_carpool').exec(function(err, user){
-        user._carpool.meeting_loc = req.body.meeting_loc;
-        user._carpool.end_loc = req.body.end_loc;
-        user._carpool.start_loc = req.body.start_loc;
-        user._carpool.capacity = req.body.capacity;
-        user._carpool.time_plan = req.body.time_plan;
-        user._carpool.save()
+    editRider: function(req, res){
+      Users.findById(req.params.id, function(err, user){
+        user.group_size = req.body.group_size;
+        user.contact_info = req.body.contact_info;
+        user.time = req.body.time;
+        user.save()
       .then(returnData.bind(res))
       .catch(err_catch.bind(res));
-    });
-  },
-
-  editRider: function(req, res){
-    console.log('made it to ctrl EDITEDITEDITEDITEDITEIDITETIDITEI', req.params.id, "^^^^^^", req.body, "&&&&&&&&&&&");
-    Users.findById(req.params.id, function(err, user){
-      console.log("***************", user);
-      console.log("****************", req.body);
-      user.group_size = req.body.group_size;
-      user.contact_info = req.body.contact_info;
-      user.time = req.body.time;
-      user.save()
-    .then(returnData.bind(res))
-    .catch(err_catch.bind(res));
-  });
-},
-  join: function(req, res) {
-    Users.findById(req.params.id)
-    .then(function(user_data) {
-      console.log("@@",user_data);
-      if (user_data.request) {
-        user_data.request = false;
-      } else {
-        user_data.request = true;
-      }
-      user_data.save();
-    })
-    .then(returnData.bind(res))
-    .catch(err_catch.bind(res));
-  },
-  aloow: function(req, res) {
-    Users.findById(req.params.id)
-    .then(function(user_data) {
-      if (user_data.request) {
-        user_data.allow = false;
-      } else {
-        user_data.allow = true;
-      }
-      user_data.save();
-    })
-    .then(returnData.bind(res))
-    .catch(err_catch.bind(res));
-  }
+      });
+    },
 };
 })();

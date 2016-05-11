@@ -1,29 +1,30 @@
-Check Out Your Current Carpool Info
-<hr>
-<table id='carpools' class='table table-striped'>
-  <caption>
-    you suck
-  </caption>
-  <tr>
-    <!-- <th>Name</th> -->
-    <th>Location</th>
-    <th>Destination</th>
-    <th>Meeting Location</th>
-    <th>Est. Departure Time</th>
-    <th>Capacity</th>
-  </tr>
-  <tr>
-    <form>
-    <!-- <td><input type="text" ng.model='driver.name'</td> -->
-    <td><input type="text" ng-model="driver.start_loc" value = {{driver.banana._carpool.start_loc}} ></td>
-    <td><input type="text" ng-model="driver.end_loc" value = {{driver.banana._carpool.end_loc}}></td>
-    <td><input type="text" ng-model="driver.meeting_loc" value = {{driver.banana._carpool.meeting_loc}}></td>
-    <td><input type="time" ng-model="driver.time_plan"></td>
-    <td><input type="text" ng-model="driver.capacity" value = {{driver.banana._carpool.capacity}} ></td>
-  </tr>
-  <tr>
-  <td><input type='submit' ng-click='driver.edit(driver)' value='Submit'></td>
-</form>
-</tr>
-
-</table>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <caption>
+      <h2>Edit Driver Record for {{driver.currentUser.name}}</h2>
+    </caption>
+    <form class="driver-edit" ng-submit="driver.edit(driver.driver._id);">
+      <div class="form-group">
+        <label for="start_loc">Location:</label>
+        <input type="text" ng-model="driver.start_loc" ng-value="driver.driver.start_loc" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="end_loc">Destination</label>
+        <input type="text" ng-model="driver.end_loc" ng-value="driver.driver.end_loc"  class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="meeting_loc">Meeting Location</label>
+        <input type="text" ng-model="driver.meeting_loc" ng-value="driver.driver.meeting_loc" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="time_plan">Est. Departure Time</label>
+        <input type="text" id="time" ng-model="driver.time_plan" datetime-picker date-only ng-value="driver.driver.time_plan | date: date: 'MMM, dd, yy, h:mma'" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="capacity">Capacity</label>
+        <select id="capacity" ng-model="driver.capacity" ng-options="idx for idx in driver.range(1,6);" class="form-control" ng-init="driver.capacity"></select>
+      </div>
+      <input type="submit" value="Edit" class="btn btn-success">
+    </form>
+  </div>
+</div>

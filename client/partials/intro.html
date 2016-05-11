@@ -1,41 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-  <style type=text/css>
-  body{
-  background-image: url('./styles/images/front.jpg');
-  }
-  fieldset{
-    width: 300px;
-    margin: 0px auto;
-  }
-  label{
-    color: white;
-  }
-  legend{
-    color: white;
-  }
-  h1{
-    color: white;
-  }
-  </style>
-</head>
-<body>
-  <fieldset>
-    <legend>Welcome! Behold! Dojo Pool</legend>
-    <form ng-submit="user.create()">
-      <input type="text" ng-model="user.name" placeholder='Name'>
-        <input type="radio" ng-model='user.status' value="true" ng-checked="true"><label>Rider</label>
-        <input type="radio" ng-model='user.status' value="false"><label>Driver</label>
-        <input type="submit" value='Submit'>
-    </form>
-
-  </fieldset>
-  <br>
-  <br>
-  <br>
-  <h1 align='center'>Fitting 50 Students in 15 Parking Spots</h1>
-</body>
-</html>
+<div class="row">
+  <div class="col-sm-3 col-md-8 col-md-offset-2 margin-top-20px">
+    <a href="/#/carpool" class="btn btn-primary btn-lg">See all Carpools</a>
+    <a href="/#/logout" class="btn btn-danger btn-lg" ng-if="user.loginStatus" ng-click="user.logout();">Logout</a>
+    <div class="margin-top-20px">
+      <fieldset>
+        <legend>Welcome! Behold! Dojo Pool</legend>
+        <form ng-submit="user.create()" ng-init="user.status=true" >
+          <div class="form-inline center">
+            <label for="username">Your Name: </label>
+            <input type="text" ng-model="user.name" placeholder='Name' id="username" class="form-control">
+            <input type="radio" ng-model='user.status' ng-value="true" id="rider"><label for="rider">Rider</label>
+            <input type="radio" ng-model='user.status' ng-value="false" id="driver"><label for="driver">Driver</label>
+          </div>
+          <input type="submit" value='Submit' class="btn btn-default button_login margin-top-20px" >
+        </form>
+      </fieldset>
+    </div>
+    <h1 align='center' class="margin-top-header">Fitting 50 Students in 15 Parking Spots</h1>
+  </div>
+</div>

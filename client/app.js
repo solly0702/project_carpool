@@ -1,5 +1,5 @@
 console.log("angular_module&routes");
-var app = angular.module("app", ["ngRoute", "ngCookies","uiGmapgoogle-maps"]);
+var app = angular.module("app", ["ngRoute", "ngCookies", "angularjs-datetime-picker","ngFlash", "uiGmapgoogle-maps"]);
 
 app.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
   GoogleMapApiProviders.configure({
@@ -12,11 +12,11 @@ app.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
   });
 }]);
 
-app.config(["$routeProvider", function($routeProvider) {
+app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
   $routeProvider
-  .when("/index", {
-    templateUrl: "partials/intro.html",
-    controller: "userCtrl",
+  .when('/index', {
+    templateUrl: 'partials/intro.html',
+    controller: 'userCtrl',
     controllerAs: "user"
   })
   .when('/rider', {
@@ -54,7 +54,14 @@ app.config(["$routeProvider", function($routeProvider) {
     controller: 'riderCtrl',
     controllerAs: 'rider'
   })
+  .when('/logout', {
+    templateUrl: 'partials/intro.html',
+    controller: 'userCtrl',
+    controllerAs: "user"
+  })
   .otherwise({
-    redirectTo: "/index"
+    templateUrl: "partials/errors/404.html",
   });
+
+  // $locationProvider.html5Mode(true);
 }]);

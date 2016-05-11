@@ -1,8 +1,9 @@
-Check Out Your Current Carpool Info
+<a href="/#/carpool" class="btn btn-primary btn-lg"><< Back to the Board</a>
+<h2 align="center">Check Out Details</h2>
 <hr>
-<table id='carpools' class='table table-striped'>
+<table id='carpools' class='table table-default'>
   <caption>
-    you suck -- <a ng-if='driver.currentUser.id === driver.driver._id' href="#/editdriver/{{driver.driver._id}}">Edit</a>
+    <h3>Details for {{driver.driver._user.name}} <a href="/#/editdriver/{{driver.driver._id}}" class="btn btn-info pull-right" ng-if='driver.currentUser.id === driver.driver._user._id'>Edit</a></h3>
   </caption>
   <tr>
     <th>Name</th>
@@ -10,31 +11,60 @@ Check Out Your Current Carpool Info
     <th>Destination</th>
     <th>Meeting Location</th>
     <th>Est. Departure Time</th>
-    <th>Capacity</th>
+    <th>Current Capacity</th>
   </tr>
   <tr>
-    <td>{{driver.driver.name}}</td>
-    <td>{{driver.driver._carpool.start_loc}}</td>
-    <td>{{driver.driver._carpool.end_loc}}</td>
-    <td>{{driver.driver._carpool.meeting_loc}}</td>
-    <td>{{driver.driver._carpool.time_plan | date: 'h:mm a'}}</td>
-    <td>{{driver.driver._carpool.capacity}}</td>
+    <td>{{driver.driver._user.name}}</td>
+    <td>{{driver.driver.start_loc}}</td>
+    <td>{{driver.driver.end_loc}}</td>
+    <td>{{driver.driver.meeting_loc}}</td>
+    <td>{{driver.driver.time_plan | date: 'MMM, dd, yy, h:mma'}}</td>
+    <td>{{driver.driver.capacity}}</td>
   </tr>
 </table>
 
 <h2>Map</h2>
 
+<div map-lazy-load="https://maps.googleapis.com/maps/api/js?v=3.23key=AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4" class="google_map">
 
-<div map-lazy-load="https://maps.googleapis.com/maps/api/js?v=3.23key=AIzaSyBnl_31W6ULJ0-swV526yBsbdCA1J5M5F4">
+  <!-- <h3 ng-hide="driver.maploading">Loading</h3> -->
+  <ui-gmap-google-map id="map" center="driver.map.center" zoom="driver.map.zoom" draggable="true" options="options">
 
-<ui-gmap-google-map id="map" center="driver.map.center" zoom="driver.map.zoom" draggable="true" options="options" bounds="">
+    <ui-gmap-marker ng-repeat="marker in driver.markerList" idKey='marker.id' coords='marker.coords' anchorPoint="marker.city">
+      <ui-gmap-window isIconVisibleOnClick='true'>
+        <h4>{{marker.city}}</h4>
+      </ui-gmap-window>
+    </ui-gmap-marker>
 
-  <ui-gmap-marker ng-repeat="marker in driver.markerList" idKey='marker.id' coords='marker.coords' anchorPoint="marker.coords.city">
-    <ui-gmap-window isIconVisibleOnClick='true'>
-      <p>{{marker.city}}</p>
-    </ui-gmap-window>
-  </ui-gmap-marker>
+  </ui-gmap-google-map>
+</div>
 
-</ui-gmap-google-map>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <h3 align="center">Requested Groups for capool Joining </h3>
+      <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Contact Information</th>
+              <th>Group Size</th>
+              <th>Requested Time for carpooling</th>
+              <th ng-if='driver.currentUser.id === driver.driver._user._id'>Accept the Join?</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="join in driver.driver.joins">
+            <tr>
+              <td>{{join._user.name}}</td>
+              <td>{{join._user.contact_info}}</td>
+              <td>{{join._user.group_size}}</td>
+              <td>{{join._user.time | date: "MMM ,dd ,yy , h:mm "}}</td>
+              <!-- for rider -->
 
+              <!-- for driver -->
+              <td ng-if="!join.status && driver.currentUser.id === driver.driver._user._id"><button type="button" name="button" class="btn btn-warning" ng-click="driver.allow(join._id);">Allow?</button></td>
+              <td ng-if="join.status && driver.currentUser.id === driver.driver._user._id"><button type="button" name="button" class="btn btn-danger" ng-click="driver.allow(join._id);">Cancel Request</button></td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
 </div>
