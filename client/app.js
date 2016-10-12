@@ -13,7 +13,7 @@ app.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
 
 app.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider) {
   $routeProvider
-  .when('/index', {
+  .when('/', {
     templateUrl: 'partials/intro.html',
     controller: 'userCtrl',
     controllerAs: "user"
@@ -62,5 +62,5 @@ app.config(["$routeProvider", "$locationProvider", function($routeProvider, $loc
     templateUrl: "partials/errors/404.html",
   });
 
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 }]);
