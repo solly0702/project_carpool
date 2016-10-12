@@ -11,6 +11,38 @@ caption {
 
 legend {
   color: #f7e3e3;
+  text-align: center;
+  font-size: 3em;
+  margin: 20px 0;
+}
+
+.logout {
+  margin-left: 10px;
+}
+
+.user-form {
+  text-align: center;
+}
+
+.user-name {
+  color: rgb(242, 89, 75);
+}
+
+.requirement {
+  text-align: center;
+}
+
+.rider-form {
+  text-align: center;
+}
+
+.not-available {
+  color: rgb(255, 61, 46);
+}
+
+.carpool-table {
+  text-align: center;
+  vertical-align: center;
 }
 
 .google_map {

@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-sm-3 col-md-8 col-md-offset-2 margin-top-20px">
     <a href="/#/carpool" class="btn btn-primary btn-lg">See all Carpools</a>
-    <a href="/#/logout" class="btn btn-danger btn-lg" ng-if="user.loginStatus" ng-click="user.logout();">Logout</a>
+    <a href="/#/logout" class="btn btn-danger btn-lg logout" ng-if="user.loginStatus" ng-click="user.logout();">Logout</a>
     <div class="margin-top-20px">
       <fieldset>
         <legend>Welcome! Behold! Dojo Pool</legend>
-        <form ng-submit="user.create()" ng-init="user.status=true" >
+        <form ng-submit="user.create()" ng-init="user.status=true" class="user-form">
           <div class="form-inline center">
             <label for="username">Your Name: </label>
             <input type="text" ng-model="user.name" placeholder='Name' id="username" class="form-control">

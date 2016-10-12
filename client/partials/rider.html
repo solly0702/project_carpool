@@ -1,12 +1,12 @@
 <a href="/#/index" class="btn btn-danger btn-lg"> << Main</a>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <h2 align='center'>Hello {{rider.currentUser.name}}</h2>
+    <h2 align='center'>Hello <span class="user-name">"{{rider.currentUser.name}}"!</span></h2>
     <fieldset>
-      <legend><h3>Enter Info!</h3></legend>
-      <h4>All Fields required</h4>
+      <legend><h3>Please Submit Your Infomation!</h3></legend>
+      <h4 class="requirement">All Fields required!</h4>
       <hr />
-      <form ng-submit='rider.update()'>
+      <form ng-submit='rider.update()' class="rider-form">
         <div class="form-group">
           <label for="group_size">Group Size:
             <select id="capacity" ng-model="rider.group_size" ng-init="rider.group_size=1" ng-options="idx for idx in rider.range(1,6);" ng-value="rider.group_size"></select>

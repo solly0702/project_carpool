@@ -1,6 +1,4 @@
-console.log("driver_Info_CTRL");
-
-app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cookies", "$routeParams", "uiGmapGoogleMapApi","uiGmapIsReady",function($scope, dF, $loc, $cookies, $routeParams,uiGmapGoogleMapApi,uiGmapIsReady) {
+app.controller("driverInfoCtrl", ["$scope", "$timeout", "driverFactory", "$location", "$cookies", "$routeParams", "uiGmapGoogleMapApi","uiGmapIsReady",function($scope, $timeout, dF, $loc, $cookies, $routeParams,uiGmapGoogleMapApi,uiGmapIsReady) {
 
   var driver = this;
   var id = $routeParams.id;
@@ -32,26 +30,27 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
     dF.allow(join_id, driver.get);
   };
 
-  driver.map = function() {
-    uiGmapGoogleMapApi.then(function(map) {
-      console.log(map);
-      driver.map = {
-        center: {
-          latitude: 47.609632,
-          longitude: -122.19687
-        },
-        zoom: 13,
-        bounds: {}
-      };
-      driver.marker = {
-        id: index++,
-        coords: {
-          latitude: "",
-          longitude: ""
-        }
-      };
-    });
-  };
+  driver.showMap = function() {
+    $timeout(function() {
+      uiGmapGoogleMapApi.then(function(map) {
+        driver.map = {
+          center: {
+            latitude: 47.609632,
+            longitude: -122.19687
+          },
+          zoom: 10,
+          bounds: {}
+        };
+        driver.marker = {
+          id: index++,
+          coords: {
+            latitude: "",
+            longitude: ""
+          }
+        };
+      })
+    },500)
+  }
 
   driver.code = function(loc,map,callback) {
     for (let el in loc) {
@@ -82,9 +81,10 @@ app.controller("driverInfoCtrl", ["$scope", "driverFactory", "$location", "$cook
 
   driver.get();
 
+
   uiGmapIsReady.promise()
   .then(driver.geocoder())
-  .then(driver.map())
+  .then(driver.showMap())
   .catch(function(err) {
     console.log(err);
   });

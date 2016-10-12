@@ -1,4 +1,3 @@
-console.log("user_CTRL");
 app.controller("userCtrl", ["$scope", "userFactory", "$location", '$cookies', function($scope, uF, $loc, $cookies) {
 
   var user = this;

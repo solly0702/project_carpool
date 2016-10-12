@@ -1,6 +1,6 @@
 <a href="/#/index" class="btn btn-danger btn-lg"> << Main</a>
 <a href="/#/driver" class="btn btn-success btn-lg pull-right btn-create" ng-if="carpool.currentUser.status == 'false'">Create Carpool Schedule</a>
-<table id='carpools' class='table table table-carpools'>
+<table id='carpools' class='table table-carpool'>
   <caption>
     <h2 align="center" class="margin-bottom-20px">List of Current Available Carpools for {{carpool.currentUser.name}}</h2>
   </caption>
@@ -16,7 +16,8 @@
       <th ng-if="carpool.currentUser.status == 'false'">Editable</th>
       <th ng-if="carpool.currentUser.status == 'false'">Deletable</th>
       <!-- for rider -->
-      <th ng-if="carpool.currentUser.status == 'true'">Request To Join</th>
+      <th ng-if="carpool.currentUser.status == 'true'">Status</th>
+
     </tr>
   </thead>
   <tbody ng-repeat='data in carpool.pool | orderBy: "data.time_plan"'>
@@ -33,8 +34,8 @@
         <td ng-if="carpool.currentUser.status == 'false' && carpool.currentUser.id === data._user._id"><button ng-click="carpool.delete(data._id) "class="btn btn-danger">Delete</button></td>
 
         <!-- for rider -->
-        <td ng-if="data.capacity > 0 && carpool.currentUser.status == 'true'"><button ng-click='carpool.request(data._id);' class="btn btn-info">Request Carpool</button></td>
-        <td ng-if="data.capacity == 0"><p>Spots are not available..</p>
+        <td ng-if="carpool.currentUser.status == 'true' && data.capacity > 0 && data.time_plan > carpool.time.time_now"><button ng-click='carpool.request(data._id);' class="btn btn-info">Request Carpool</button></td>
+        <td ng-if="carpool.currentUser.status == 'true' && (data.capacity <= 0 || data.time_plan < carpool.time.time_now)"><p><sapn class="not-available">Carpools are not available..</span></p></td>
       </tr>
   </tbody>
 </table>

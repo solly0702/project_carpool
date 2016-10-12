@@ -1,5 +1,4 @@
-console.log("angular_module&routes");
-var app = angular.module("app", ["ngRoute", "ngCookies", "angularjs-datetime-picker","ngFlash", "uiGmapgoogle-maps"]);
+var app = angular.module("app", ["ngRoute", "ngCookies", "angularjs-datetime-picker","ngFlash", "uiGmapgoogle-maps"]).constant("_", _);
 
 app.config(['uiGmapGoogleMapApiProvider', function(GoogleMapApiProviders) {
   GoogleMapApiProviders.configure({

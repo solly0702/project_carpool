@@ -1,4 +1,3 @@
-console.log("user_FR");
 app.factory("userFactory", ["$http", "$cookies", function($http, $cookies) {
 
   var uF = {};
@@ -30,6 +29,6 @@ app.factory("userFactory", ["$http", "$cookies", function($http, $cookies) {
       return false;
     }
   };
-  
+
   return uF;
 }]);

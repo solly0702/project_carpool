@@ -1,4 +1,3 @@
-console.log("rider_FR");
 app.factory("riderFactory", ["$http", '$cookies', function($http, $cookies) {
 
   var rF = {};

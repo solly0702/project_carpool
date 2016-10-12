@@ -1,4 +1,3 @@
-console.log("driver_FR");
 app.factory("driverFactory", ["$http", "$cookies",function($http, $cookies) {
 
   var dF = {};

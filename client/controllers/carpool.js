@@ -27,6 +27,7 @@ app.controller('carpoolCtrl', ['$scope', 'carpoolFactory', 'driverFactory', '$lo
       size: carpool.currentUser.size,
     };
     cF.request(data, carpool.index);
+    $loc.path("/carpool");
   };
 
   carpool.cancel = function(carpool_id, join_id) {
@@ -42,8 +43,14 @@ app.controller('carpoolCtrl', ['$scope', 'carpoolFactory', 'driverFactory', '$lo
   carpool.index = function() {
     cF.index(function(data){
       carpool.pool = data.data;
+      carpool.time = {
+        time_now: new Date().toISOString()
+      }
     });
-    carpool.joins(carpool.currentUser.id);
+    if (carpool.currentUser.id) {
+      carpool.joins(carpool.currentUser.id);
+    }
+
   };
 
   carpool.index();
